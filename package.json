@@ -1,6 +1,6 @@
 {
   "name": "node-itunes-search",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple NodeJS wrapper for the ITunes Search API.",
   "main": "src/index.js",
   "scripts": {
