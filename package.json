@@ -2,8 +2,9 @@
   "name": "node-itunes-search",
   "version": "0.0.2",
   "description": "A simple NodeJS wrapper for the ITunes Search API.",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
+    "build": "tsc",
     "test": "jest",
     "testWatch": "clear; jest --watchAll"
   },
