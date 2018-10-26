@@ -2,7 +2,7 @@
   "name": "node-itunes-search",
   "version": "0.0.1",
   "description": "A simple NodeJS wrapper for the ITunes Search API.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/jacob-shuman/node-itunes-search#readme",
   "dependencies": {
+    "@types/node": "^10.12.0",
     "request": "^2.88.0"
   }
 }
