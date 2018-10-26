@@ -1,0 +1,27 @@
+{
+  "name": "node-itunes-search",
+  "version": "0.0.1",
+  "description": "A simple NodeJS wrapper for the ITunes Search API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacob-shuman/node-itunes-search.git"
+  },
+  "keywords": [
+    "itunes",
+    "search",
+    "api"
+  ],
+  "author": "Jacob Shuman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacob-shuman/node-itunes-search/issues"
+  },
+  "homepage": "https://github.com/jacob-shuman/node-itunes-search#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
