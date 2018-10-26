@@ -1,5 +1,5 @@
 import { search } from "./search";
-import { lookup } from "./lookup";
+import { lookup } from "dns";
 
 export default {
   search: search,
