@@ -1,7 +1,7 @@
 import { search } from "./search";
 import { lookup } from "./lookup";
 
-export default {
+export = {
   search: search,
   lookup: lookup
 };
