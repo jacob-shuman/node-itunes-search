@@ -1,3 +1,3 @@
 export class ItunesLookupOptions {}
 
-export function lookup(options: ItunesLookupOptions) {}
+export function lookupItunes(options: ItunesLookupOptions) {}

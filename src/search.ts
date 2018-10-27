@@ -58,7 +58,9 @@ export class ItunesSearchOptions {
   }
 }
 
-export function search(options: ItunesSearchOptions): Promise<ItunesResult> {
+export function searchItunes(
+  options: ItunesSearchOptions
+): Promise<ItunesResult> {
   const itunesSearchRoot = "https://itunes.apple.com/search";
 
   return new Promise((resolve, reject) => {

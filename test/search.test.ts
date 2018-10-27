@@ -1,4 +1,4 @@
-import { search, ItunesSearchOptions, ItunesResult } from "../src/index";
+import { searchItunes, ItunesSearchOptions, ItunesResult } from "../src/index";
 
 describe("Search", () => {
   test("Successful Search", () => {
@@ -8,7 +8,7 @@ describe("Search", () => {
       term: "Queen Bohemian Rhapsody"
     });
 
-    return search(searchOptions).then((result: ItunesResult) => {
+    return searchItunes(searchOptions).then((result: ItunesResult) => {
       return expect(result.resultCount).toBeGreaterThan(0);
     });
   });
