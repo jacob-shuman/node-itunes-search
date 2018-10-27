@@ -67,14 +67,13 @@ export function search(options: ItunesSearchOptions): Promise<ItunesResult> {
     request(
       `${itunesSearchRoot}${options.toURI()}`,
       (error: any, response: any, body: any) => {
-        body = JSON.parse(body);
-
+        // TODO Use ItunesResult instead for type preservation.
         if (error) {
           reject(error);
-          return;
+        } else {
+          body = JSON.parse(body);
+          resolve(ItunesResult.parse(body));
         }
-
-        resolve(new ItunesResult({ resultCount: body.resultCount || 0 }));
       }
     );
   });

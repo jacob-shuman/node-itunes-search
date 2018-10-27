@@ -36,12 +36,14 @@ function search(options) {
     return new Promise((resolve, reject) => {
         const request = require("request");
         request(`${itunesSearchRoot}${options.toURI()}`, (error, response, body) => {
-            body = JSON.parse(body);
+            // TODO Use ItunesResult instead for type preservation.
             if (error) {
                 reject(error);
-                return;
             }
-            resolve(new result_1.ItunesResult({ resultCount: body.resultCount || 0 }));
+            else {
+                body = JSON.parse(body);
+                resolve(result_1.ItunesResult.parse(body));
+            }
         });
     });
 }

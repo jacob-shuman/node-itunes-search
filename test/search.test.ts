@@ -1,5 +1,4 @@
-import { ItunesSearchOptions, search } from "../src/search";
-import { ItunesResult } from "../src/result";
+import { search, ItunesSearchOptions, ItunesResult } from "../src/index";
 
 describe("Search", () => {
   test("Successful Search", () => {
@@ -10,7 +9,6 @@ describe("Search", () => {
     });
 
     return search(searchOptions).then((result: ItunesResult) => {
-      console.log(result);
       return expect(result.resultCount).toBeGreaterThan(0);
     });
   });
