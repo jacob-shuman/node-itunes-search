@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "A simple NodeJS wrapper for the ITunes Search API.",
   "main": "build/index.js",
+  "types": "build/index.js",
   "scripts": {
     "build": "tsc",
     "test": "npm build; jest",
