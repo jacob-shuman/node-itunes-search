@@ -34,7 +34,7 @@ exports.ItunesSearchOptions = ItunesSearchOptions;
 function searchItunes(options) {
     const itunesSearchRoot = "https://itunes.apple.com/search";
     return new Promise((resolve, reject) => {
-        const phin = require("request");
+        const phin = require("phin");
         phin(`${itunesSearchRoot}${options.toURI()}`, (err, res) => {
             // TODO Use ItunesResult instead for type preservation.
             if (err) {
