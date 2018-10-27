@@ -62,19 +62,16 @@ export function search(options: ItunesSearchOptions): Promise<ItunesResult> {
   const itunesSearchRoot = "https://itunes.apple.com/search";
 
   return new Promise((resolve, reject) => {
-    const request = require("request");
+    const phin = require("request");
 
-    request(
-      `${itunesSearchRoot}${options.toURI()}`,
-      (error: any, response: any, body: any) => {
-        // TODO Use ItunesResult instead for type preservation.
-        if (error) {
-          reject(error);
-        } else {
-          body = JSON.parse(body);
-          resolve(ItunesResult.parse(body));
-        }
+    phin(`${itunesSearchRoot}${options.toURI()}`, (err: any, res: any) => {
+      // TODO Use ItunesResult instead for type preservation.
+      if (err) {
+        reject(err);
+      } else {
+        res.body = JSON.parse(res.body);
+        resolve(ItunesResult.parse(res.body));
       }
-    );
+    });
   });
 }
