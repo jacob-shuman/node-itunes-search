@@ -1,3 +1,3 @@
 export declare class ItunesLookupOptions {
 }
-export declare function lookup(options: ItunesLookupOptions): void;
+export declare function lookupItunes(options: ItunesLookupOptions): void;

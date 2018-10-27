@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var search_1 = require("./search");
-exports.search = search_1.search;
+exports.searchItunes = search_1.searchItunes;
 exports.ItunesSearchOptions = search_1.ItunesSearchOptions;
 var lookup_1 = require("./lookup");
-exports.lookup = lookup_1.lookup;
+exports.lookupItunes = lookup_1.lookupItunes;
 exports.ItunesLookupOptions = lookup_1.ItunesLookupOptions;
 var result_1 = require("./result");
 exports.ItunesResult = result_1.ItunesResult;

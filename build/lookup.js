@@ -3,5 +3,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class ItunesLookupOptions {
 }
 exports.ItunesLookupOptions = ItunesLookupOptions;
-function lookup(options) { }
-exports.lookup = lookup;
+function lookupItunes(options) { }
+exports.lookupItunes = lookupItunes;

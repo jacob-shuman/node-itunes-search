@@ -31,7 +31,7 @@ class ItunesSearchOptions {
     }
 }
 exports.ItunesSearchOptions = ItunesSearchOptions;
-function search(options) {
+function searchItunes(options) {
     const itunesSearchRoot = "https://itunes.apple.com/search";
     return new Promise((resolve, reject) => {
         const phin = require("request");
@@ -47,4 +47,4 @@ function search(options) {
         });
     });
 }
-exports.search = search;
+exports.searchItunes = searchItunes;

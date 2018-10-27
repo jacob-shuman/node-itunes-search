@@ -15,4 +15,4 @@ export declare class ItunesSearchOptions {
         extras?: object;
     });
 }
-export declare function search(options: ItunesSearchOptions): Promise<ItunesResult>;
+export declare function searchItunes(options: ItunesSearchOptions): Promise<ItunesResult>;

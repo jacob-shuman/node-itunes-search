@@ -1,3 +1,3 @@
-export { search, ItunesSearchOptions } from "./search";
-export { lookup, ItunesLookupOptions } from "./lookup";
+export { searchItunes, ItunesSearchOptions } from "./search";
+export { lookupItunes, ItunesLookupOptions } from "./lookup";
 export { ItunesResult } from "./result";
