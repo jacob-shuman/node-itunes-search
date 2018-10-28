@@ -6,23 +6,62 @@
 [![Build Status](https://travis-ci.org/jacob-shuman/node-itunes-search.svg?branch=master)](https://travis-ci.org/jacob-shuman/node-itunes-search)
 
 ## Installation
+
 ```bash
 $ npm install node-itunes-search
 ```
 
-## Basic Usage
-#### Song Search
+## Importing
+
+#### Commonjs
+
 ```ts
-//ES6
-import { ItunesSearchOptions } from 'node-itunes-search'
-
-//CommonJS
-const itunesApi = require('node-itunes-search');
-
-const searchOptions = new ItunesSearchOptions({
-      term: "Queen Bohemian Rhapsody",
-      limit: 1
-    });
-
-itunesApi.searchItunes(searchOptions)
+const itunesAPI = require("node-itunes-search");
 ```
+
+#### ES6
+
+```ts
+import { ItunesSearchOptions } from "node-itunes-search";
+```
+
+## Usage
+
+The module exposes 2 functions `searchItunes` and `lookupItunes` which can be used to search and lookup content using the Itunes Search API respectively.
+
+Both of these functions use vanilla javascript promises which, when successful, will return an `ItunesResult`.
+
+### Search
+
+```ts
+const itunesAPI = require("node-itunes-search");
+
+const searchOptions = new itunesAPI.ItunesSearchOptions({
+  term: "Queen Bohemian Rhapsody", // All searches require a single string query.
+
+  limit: 1 // An optional maximum number of returned results may be specified.
+});
+
+itunesAPI.searchItunes(searchOptions).then((searchResult: ItunesResult) => {
+  console.log(searchResult);
+});
+```
+
+### Lookup
+
+```ts
+import { lookupItunes, ItunesLookupOptions } from "node-itunes-search";
+
+const lookupOptions = new ItunesLookupOptions({
+  keys: ["560857776"], // Specify ID(s) of desired content
+  keyType: ItunesLookupType.ID // Searching by content ID(s)
+});
+
+lookupItunes(lookupOptions).then((result: ItunesResult) => {
+  console.log(result);
+});
+```
+
+## Examples
+
+Look in the examples directory for usage examples.
