@@ -36,11 +36,11 @@ export class ItunesLookupOptions {
   toURI(): string {
     // Converting all keys to comma seperated string
     const lookupKeys: string = ((): string => {
-      let keyParam = "";
+      let keyParam = `${this.keyType.toString()}=`;
 
-      for (let key in this.keys) {
-        keyParam += (keyParam != "" ? "," : "") + key;
-      }
+      this.keys.forEach((key, index) => {
+        keyParam += (index > 0 ? "," : "") + key;
+      });
 
       return keyParam;
     })();

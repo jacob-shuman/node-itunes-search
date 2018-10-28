@@ -1,11 +1,11 @@
 import { ItunesResult } from "../result";
 import { ItunesLookupOptions } from "./lookup-options";
 
+export const itunesLookupRoot = "https://itunes.apple.com/lookup";
+
 export function lookupItunes(
   options: ItunesLookupOptions
 ): Promise<ItunesResult> {
-  const itunesLookupRoot = "https://itunes.apple.com/lookup";
-
   return new Promise((resolve, reject) => {
     const phin = require("phin");
 

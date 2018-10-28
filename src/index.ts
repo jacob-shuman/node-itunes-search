@@ -1,8 +1,8 @@
-export { searchItunes } from "./search/search";
+export { searchItunes, itunesSearchRoot } from "./search/search";
 export { ItunesSearchOptions } from "./search/search-options";
 
-export { lookupItunes } from "./lookup/lookup";
-export { ItunesLookupOptions } from "./lookup/lookup-options";
+export { lookupItunes, itunesLookupRoot } from "./lookup/lookup";
+export { ItunesLookupOptions, ItunesLookupType } from "./lookup/lookup-options";
 
 export { ItunesResult } from "./result";
 

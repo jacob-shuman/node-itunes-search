@@ -2,11 +2,11 @@ import { ItunesMedia } from "../media";
 import { ItunesResult } from "../result";
 import { ItunesSearchOptions } from "./search-options";
 
+export const itunesSearchRoot = "https://itunes.apple.com/search";
+
 export function searchItunes(
   options: ItunesSearchOptions
 ): Promise<ItunesResult> {
-  const itunesSearchRoot = "https://itunes.apple.com/search";
-
   return new Promise((resolve, reject) => {
     const phin = require("phin");
 
