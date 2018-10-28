@@ -1,3 +1,5 @@
+interface ItunesResultInterface {}
+
 export class ItunesResult {
   // Parse an [ItunesResult] from a JSON object
   static parse(result: any): ItunesResult {
@@ -11,9 +13,12 @@ export class ItunesResult {
   readonly resultCount: number;
 
   // Results of search/lookup
-  readonly results: Array<object>;
+  readonly results: Array<ItunesResultInterface>;
 
-  constructor(options: { resultCount: number; results: Array<object> }) {
+  constructor(options: {
+    resultCount: number;
+    results: Array<ItunesResultInterface>;
+  }) {
     this.resultCount = options.resultCount;
     this.results = options.results;
   }

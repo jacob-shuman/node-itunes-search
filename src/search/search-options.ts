@@ -1,5 +1,4 @@
-import { ItunesMedia } from "./media";
-import { ItunesResult } from "./result";
+import { ItunesMedia } from "../media";
 
 export class ItunesSearchOptions {
   // A query to search for.
@@ -18,8 +17,22 @@ export class ItunesSearchOptions {
   // JS object with any extra search parameters not found in this class.
   extras?: {};
 
+  constructor(options: {
+    term: string;
+    country?: string;
+    media?: ItunesMedia;
+    limit?: number;
+    extras?: object;
+  }) {
+    this.term = options.term;
+    this.country = options.country;
+    this.media = options.media;
+    this.limit = options.limit;
+    this.extras = options.extras;
+  }
+
   // Converts object to URI safe parameters
-  toURI = () => {
+  toURI() {
     const searchTerm: string = "term=" + this.term;
     const searchCountry: string = this.country
       ? "&country=" + this.country
@@ -40,40 +53,8 @@ export class ItunesSearchOptions {
         })()
       : "";
 
-    return "?" + searchTerm + searchCountry + searchMedia + searchLimit;
-  };
-
-  constructor(options: {
-    term: string;
-    country?: string;
-    media?: ItunesMedia;
-    limit?: number;
-    extras?: object;
-  }) {
-    this.term = options.term;
-    this.country = options.country;
-    this.media = options.media;
-    this.limit = options.limit;
-    this.extras = options.extras;
+    return (
+      searchTerm + searchCountry + searchMedia + searchLimit + searchExtras
+    );
   }
-}
-
-export function searchItunes(
-  options: ItunesSearchOptions
-): Promise<ItunesResult> {
-  const itunesSearchRoot = "https://itunes.apple.com/search";
-
-  return new Promise((resolve, reject) => {
-    const phin = require("phin");
-
-    phin(`${itunesSearchRoot}${options.toURI()}`, (err: any, res: any) => {
-      // TODO Use ItunesResult instead for type preservation.
-      if (err) {
-        reject(err);
-      } else {
-        res.body = JSON.parse(res.body);
-        resolve(ItunesResult.parse(res.body));
-      }
-    });
-  });
 }
