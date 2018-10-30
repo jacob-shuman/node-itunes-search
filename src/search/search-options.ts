@@ -1,4 +1,16 @@
-import { ItunesMedia } from "../media";
+import { ItunesMedia } from "../media/media";
+import {
+  ItunesEntityMovie,
+  ItunesEntityPodcast,
+  ItunesEntityMusic,
+  ItunesEntityMusicVideo,
+  ItunesEntityAudioBook,
+  ItunesEntityShortFilm,
+  ItunesEntityTvShow,
+  ItunesEntitySoftware,
+  ItunesEntityEbook,
+  ItunesEntityAll
+} from "../media/entity";
 
 export class ItunesSearchOptions {
   // A query to search for.
@@ -11,8 +23,24 @@ export class ItunesSearchOptions {
   // The type of media to search for, the default is 'all'
   media?: ItunesMedia;
 
+  // The type of results wanted,
+  entity?:
+    | ItunesEntityMovie
+    | ItunesEntityPodcast
+    | ItunesEntityMusic
+    | ItunesEntityMusicVideo
+    | ItunesEntityAudioBook
+    | ItunesEntityShortFilm
+    | ItunesEntityTvShow
+    | ItunesEntitySoftware
+    | ItunesEntityEbook
+    | ItunesEntityAll;
+
   // Maximum number of results to return.
   limit?: number;
+
+  // Language to return the results in. (default is "en_us")
+  lang?: "en_us" | "ja_jp";
 
   // JS object with any extra search parameters not found in this class.
   extras?: {};
@@ -21,13 +49,27 @@ export class ItunesSearchOptions {
     term: string;
     country?: string;
     media?: ItunesMedia;
+    entity?:
+      | ItunesEntityMovie
+      | ItunesEntityPodcast
+      | ItunesEntityMusic
+      | ItunesEntityMusicVideo
+      | ItunesEntityAudioBook
+      | ItunesEntityShortFilm
+      | ItunesEntityTvShow
+      | ItunesEntitySoftware
+      | ItunesEntityEbook
+      | ItunesEntityAll;
     limit?: number;
+    lang?: "en_us" | "ja_jp";
     extras?: object;
   }) {
     this.term = options.term;
     this.country = options.country;
     this.media = options.media;
+    this.entity = options.entity;
     this.limit = options.limit;
+    this.lang = options.lang;
     this.extras = options.extras;
   }
 
@@ -37,7 +79,10 @@ export class ItunesSearchOptions {
     const searchCountry: string = this.country
       ? "&country=" + this.country
       : "";
+
     const searchMedia: string = this.media ? "&media=" + this.media : "";
+    const searchEntity: string = this.entity ? "&entity=" + this.entity : "";
+
     const searchLimit: string = this.limit ? "&limit=" + this.limit : "";
 
     // Converting passed extra parameters
@@ -54,7 +99,12 @@ export class ItunesSearchOptions {
       : "";
 
     return (
-      searchTerm + searchCountry + searchMedia + searchLimit + searchExtras
+      searchTerm +
+      searchCountry +
+      searchMedia +
+      searchEntity +
+      searchLimit +
+      searchExtras
     );
   }
 }

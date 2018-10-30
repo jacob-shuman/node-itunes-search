@@ -1,4 +1,4 @@
-import { ItunesMedia } from "../media";
+import { ItunesMedia } from "../media/media";
 import { ItunesResult } from "../result";
 import { ItunesSearchOptions } from "./search-options";
 

@@ -5,8 +5,3 @@ install:
   - npm install
 script:
   - npm test
-# deploy:
-#   provider: npm
-#   email: "jacob.shuman7@gmail.com"
-#   api_key:
-#     secure: IJn8J8Mk9kfhJGXPWdriQp60h2O0kp1CQ25h5IUj2roFpBMBqNQ9zGzRYV0icv5udz5mn1LT7NVtjb+YJI6tDmkCDz7vK8SHCEV9zCemV5mP8X48FVCVMoASj3qqD96ZeltEmyQNcA/TDlcMDsbkTW2U8Pxl2KbNq5Ejb3e29RwCHnh8gD/wj3q0CnfuWNhV1Whqyso6aSN4wTqz/vho0S/jcSiWU/PucWDyucgQ9NNzJ5HQq/JjMzT/wRb1tthX8RquEI0o9mlfde3egZRn2MH6jsKm5ynbNPLlGTcyvJv6BbEcpdTpe6esVjbP+F+QsjlRswNdHG4kRaPYEDDWS1jiWJhXGbjfq8hBacJLpxdl4I8gc/bWY+0MG212B93jTqbCEvzAOOAnYLfcfraYKwKauS9McEsvTsQHsx/gDHdM+wizXreOTZWvCHpyMXe0rcoQtYT0evUOioZdAxtRKNzKlyZRdOsnfm+8FVTXMAo5hwQe8hSQXvO5sR77s93O+SwrxEqnfSblyI3zzQuwZjc6FuM+ph20x2H1eGmItu2Mcdz6ln0Wg3nMJTOxt97Ukxx/vtdOHy9bNLTAMGj+DZQZF1YyOrgTnWOc0ZJhLXIzNrtzrNidXoDkOq4p0MawgIf0CttwGLtdAnJJkStA1Fu/NfJigMSPkHHBpNvIYHA=
