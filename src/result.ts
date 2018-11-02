@@ -1,6 +1,8 @@
 interface ItunesResultInterface {
   wrapperType?: "track" | "collection" | "artist";
+
   explicitness?: "explicit" | "cleaned " | "notExplicit";
+
   kind?:
     | "book"
     | "album"

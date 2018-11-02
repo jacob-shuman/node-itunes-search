@@ -6,7 +6,6 @@ function searchItunes(options) {
     return new Promise((resolve, reject) => {
         const phin = require("phin");
         phin(`${exports.itunesSearchRoot}?${options.toURI()}`, (err, res) => {
-            // TODO Use ItunesResult instead for type preservation.
             if (err) {
                 reject(err);
             }

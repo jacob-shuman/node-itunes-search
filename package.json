@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/jacob-shuman/node-itunes-search#readme",
   "dependencies": {
-    "phin": "^3.0.0"
+    "phin": "^2.9.3"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
