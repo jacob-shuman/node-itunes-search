@@ -11,7 +11,6 @@ export function searchItunes(
     const phin = require("phin");
 
     phin(`${itunesSearchRoot}?${options.toURI()}`, (err: any, res: any) => {
-      // TODO Use ItunesResult instead for type preservation.
       if (err) {
         reject(err);
       } else {
