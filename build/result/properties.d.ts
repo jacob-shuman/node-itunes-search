@@ -10,13 +10,11 @@ export declare class ItunesProperties {
     readonly artistName?: string;
     readonly collectionName: string;
     readonly trackName?: string;
-    readonly censoredName?: string;
     readonly collectionCensoredName?: string;
     readonly trackCensoredName?: string;
     readonly artistViewUrl?: string;
     readonly collectionViewUrl?: string;
     readonly trackViewUrl?: string;
-    readonly viewURL?: string;
     readonly previewUrl?: string;
     readonly artworkUrl30?: string;
     readonly artworkUrl60?: string;

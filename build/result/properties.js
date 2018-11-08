@@ -10,13 +10,11 @@ class ItunesProperties {
         this.artistName = options.artistName;
         this.collectionName = options.collectionName;
         this.trackName = options.trackName;
-        this.censoredName = options.censoredName;
         this.collectionCensoredName = options.collectionCensoredName;
         this.trackCensoredName = options.trackCensoredName;
         this.artistViewUrl = options.artistViewUrl;
         this.collectionViewUrl = options.collectionViewUrl;
         this.trackViewUrl = options.trackViewUrl;
-        this.viewURL = options.viewURL;
         this.previewUrl = options.previewUrl;
         this.artworkUrl30 = options.artworkUrl30;
         this.artworkUrl60 = options.artworkUrl60;
