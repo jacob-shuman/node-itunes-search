@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const result_1 = require("../result");
+const result_1 = require("../result/result");
 exports.itunesSearchRoot = "https://itunes.apple.com/search";
 function searchItunes(options) {
     return new Promise((resolve, reject) => {
@@ -11,7 +11,7 @@ function searchItunes(options) {
             }
             else {
                 res.body = JSON.parse(res.body);
-                resolve(result_1.ItunesResult.parse(res.body));
+                resolve(result_1.ItunesResult.from(res.body));
             }
         });
     });

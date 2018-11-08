@@ -4,7 +4,11 @@ export { ItunesSearchOptions } from "./search/search-options";
 export { lookupItunes, itunesLookupRoot } from "./lookup/lookup";
 export { ItunesLookupOptions, ItunesLookupType } from "./lookup/lookup-options";
 
-export { ItunesResult } from "./result";
+export { ItunesExplicitness } from "./result/explicitness";
+export { ItunesKind } from "./result/kind";
+export { ItunesProperties } from "./result/properties";
+export { ItunesWrapperType } from "./result/wrapper-type";
+export { ItunesResult } from "./result/result";
 
 export { ItunesMedia } from "./media/media";
 export {

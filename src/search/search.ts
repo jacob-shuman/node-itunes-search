@@ -1,5 +1,4 @@
-import { ItunesMedia } from "../media/media";
-import { ItunesResult } from "../result";
+import { ItunesResult } from "../result/result";
 import { ItunesSearchOptions } from "./search-options";
 
 export const itunesSearchRoot = "https://itunes.apple.com/search";
@@ -15,7 +14,7 @@ export function searchItunes(
         reject(err);
       } else {
         res.body = JSON.parse(res.body);
-        resolve(ItunesResult.parse(res.body));
+        resolve(ItunesResult.from(res.body));
       }
     });
   });
