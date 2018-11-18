@@ -1,3 +1,16 @@
+import {
+  ItunesEntityMovie,
+  ItunesEntityPodcast,
+  ItunesEntityMusic,
+  ItunesEntityMusicVideo,
+  ItunesEntityAudioBook,
+  ItunesEntityShortFilm,
+  ItunesEntityTvShow,
+  ItunesEntitySoftware,
+  ItunesEntityEbook,
+  ItunesEntityAll
+} from "../media/entity";
+
 export enum ItunesLookupType {
   ID = "id",
   AMGARTISTID = "amgArtistId",
@@ -14,6 +27,19 @@ export class ItunesLookupOptions {
   // Type of data the key represents
   keyType: ItunesLookupType;
 
+  // The type of result wanted,
+  entity?:
+    | ItunesEntityMovie
+    | ItunesEntityPodcast
+    | ItunesEntityMusic
+    | ItunesEntityMusicVideo
+    | ItunesEntityAudioBook
+    | ItunesEntityShortFilm
+    | ItunesEntityTvShow
+    | ItunesEntitySoftware
+    | ItunesEntityEbook
+    | ItunesEntityAll;
+
   // Maximum number of results to return.
   limit?: number;
 
@@ -23,11 +49,23 @@ export class ItunesLookupOptions {
   constructor(options: {
     keys: Array<string>;
     keyType: ItunesLookupType;
+    entity?:
+      | ItunesEntityMovie
+      | ItunesEntityPodcast
+      | ItunesEntityMusic
+      | ItunesEntityMusicVideo
+      | ItunesEntityAudioBook
+      | ItunesEntityShortFilm
+      | ItunesEntityTvShow
+      | ItunesEntitySoftware
+      | ItunesEntityEbook
+      | ItunesEntityAll;
     limit?: number;
     extras?: {};
   }) {
     this.keys = options.keys;
     this.keyType = options.keyType;
+    this.entity = options.entity;
     this.limit = options.limit;
     this.extras = options.extras;
   }
@@ -45,6 +83,8 @@ export class ItunesLookupOptions {
       return keyParam;
     })();
 
+    const lookupEntity: string = this.entity ? "&entity=" + this.entity : "";
+
     const lookupLimit: string = this.limit ? "&limit=" + this.limit : "";
 
     // Converting passed extra parameters
@@ -60,6 +100,6 @@ export class ItunesLookupOptions {
         })()
       : "";
 
-    return lookupKeys + lookupLimit + lookupExtras;
+    return lookupKeys + lookupEntity + lookupLimit + lookupExtras;
   }
 }

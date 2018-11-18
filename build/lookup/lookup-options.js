@@ -13,6 +13,7 @@ class ItunesLookupOptions {
     constructor(options) {
         this.keys = options.keys;
         this.keyType = options.keyType;
+        this.entity = options.entity;
         this.limit = options.limit;
         this.extras = options.extras;
     }
@@ -26,6 +27,7 @@ class ItunesLookupOptions {
             });
             return keyParam;
         })();
+        const lookupEntity = this.entity ? "&entity=" + this.entity : "";
         const lookupLimit = this.limit ? "&limit=" + this.limit : "";
         // Converting passed extra parameters
         const lookupExtras = this.extras
@@ -37,7 +39,7 @@ class ItunesLookupOptions {
                 return extraParams;
             })()
             : "";
-        return lookupKeys + lookupLimit + lookupExtras;
+        return lookupKeys + lookupEntity + lookupLimit + lookupExtras;
     }
 }
 exports.ItunesLookupOptions = ItunesLookupOptions;
