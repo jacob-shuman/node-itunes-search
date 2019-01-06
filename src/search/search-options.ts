@@ -14,14 +14,10 @@ import {
 
 export function toSearchUri(options: ISearchOptions): string {
   const searchTerm: string = "term=" + options.term;
-  const searchCountry: string = options.country
-    ? "&country=" + options.country
-    : "";
+  const searchCountry: string = options.country ? "&country=" + options.country : "";
 
   const searchMedia: string = options.media ? "&media=" + options.media : "";
-  const searchEntity: string = options.entity
-    ? "&entity=" + options.entity
-    : "";
+  const searchEntity: string = options.entity ? "&entity=" + options.entity : "";
 
   const searchLimit: string = options.limit ? "&limit=" + options.limit : "";
 
@@ -38,14 +34,7 @@ export function toSearchUri(options: ISearchOptions): string {
       })()
     : "";
 
-  return (
-    searchTerm +
-    searchCountry +
-    searchMedia +
-    searchEntity +
-    searchLimit +
-    searchExtras
-  );
+  return searchTerm + searchCountry + searchMedia + searchEntity + searchLimit + searchExtras;
 }
 
 export interface ISearchOptions {

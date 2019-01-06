@@ -32,9 +32,7 @@ export function toLookupUri(options: ILookupOptions): string {
     return keyParam;
   })();
 
-  const lookupEntity: string = options.entity
-    ? "&entity=" + options.entity
-    : "";
+  const lookupEntity: string = options.entity ? "&entity=" + options.entity : "";
 
   const lookupLimit: string = options.limit ? "&limit=" + options.limit : "";
 

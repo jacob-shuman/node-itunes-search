@@ -1,6 +1,6 @@
-import { ItunesKind } from "./kind";
-import { ItunesExplicitness } from "./explicitness";
-import { ItunesWrapperType } from "./wrapper-type";
+import {ItunesKind} from "./kind";
+import {ItunesExplicitness} from "./explicitness";
+import {ItunesWrapperType} from "./wrapper-type";
 
 export class ItunesProperties {
   readonly wrapperType?: ItunesWrapperType;
