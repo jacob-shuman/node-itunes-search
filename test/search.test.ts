@@ -32,8 +32,6 @@ describe("Search Format", () => {
       entity: entity
     });
 
-    expect(searchOptions.toURI()).toBe(
-      `term=${term}&media=${media}&entity=${entity}`
-    );
+    expect(searchOptions.toURI()).toBe(`term=${term}&media=${media}&entity=${entity}`);
   });
 });
