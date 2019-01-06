@@ -1,4 +1,4 @@
-import { searchItunes, ItunesSearchOptions, ItunesResult } from "../src/index";
+import {ItunesResult, ItunesSearchOptions} from "../src/index";
 
 describe("Search Examples", () => {
   test("Song Search", () => {
@@ -39,5 +39,45 @@ describe("Lookup Examples", () => {
       console.log(result);
       return expect(result.resultCount).toBeGreaterThan(0);
     });
+  });
+});
+
+// Version 2.0.0
+
+import ItunesSearch from "../src/index";
+
+describe("Search Examples (2.0.0)", () => {
+  test("Song Search", async () => {
+    expect.assertions(1);
+
+    const itunesAPI = require("node-itunes-search");
+
+    const searchOptions: ItunesSearch.SearchOptionsInterface = {
+      term: "Queen Bohemian Rhapsody",
+      limit: 1
+    };
+
+    const result: ItunesSearch.Result = await ItunesSearch.search(
+      searchOptions
+    );
+
+    return expect(result.resultCount).toEqual(1);
+  });
+});
+
+describe("Lookup Examples (2.0.0)", () => {
+  test("Lookup Song by ID", async () => {
+    expect.assertions(1);
+
+    const lookupOptions: ItunesSearch.LookupOptionsInterface = {
+      keys: ["560857776"],
+      keyType: ItunesSearch.LookupType.ID
+    };
+
+    const result: ItunesSearch.Result = await ItunesSearch.lookup(
+      lookupOptions
+    );
+
+    return expect(result.resultCount).toBeGreaterThan(0);
   });
 });

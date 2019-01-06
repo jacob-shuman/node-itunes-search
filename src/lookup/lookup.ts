@@ -1,21 +1,33 @@
-import { ItunesResult } from "../result/result";
-import { ItunesLookupOptions } from "./lookup-options";
+import {ItunesResult} from "../result/result";
+import {
+  ILookupOptions,
+  ItunesLookupOptions,
+  ItunesLookupType
+} from "./lookup-options";
 
 export const itunesLookupRoot = "https://itunes.apple.com/lookup";
 
 export function lookupItunes(
-  options: ItunesLookupOptions
+  options: ILookupOptions | ItunesLookupOptions
 ): Promise<ItunesResult> {
   return new Promise((resolve, reject) => {
     const phin = require("phin");
 
-    phin(`${itunesLookupRoot}?${options.toURI()}`, (err: any, res: any) => {
-      if (err) {
-        reject(err);
-      } else {
-        res.body = JSON.parse(res.body);
-        resolve(ItunesResult.from(res.body));
+    //Initializing passed options (adding methods when directly passing an object)
+    const lookupOptions: ItunesLookupOptions = ItunesLookupOptions.from(
+      options
+    );
+
+    phin(
+      `${itunesLookupRoot}?${lookupOptions.toURI()}`,
+      (err: any, res: any) => {
+        if (err) {
+          reject(err);
+        } else {
+          res.body = JSON.parse(res.body);
+          resolve(ItunesResult.from(res.body));
+        }
       }
-    });
+    );
   });
 }

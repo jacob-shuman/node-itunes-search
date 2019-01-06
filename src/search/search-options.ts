@@ -1,4 +1,4 @@
-import { ItunesMedia } from "../media/media";
+import {ItunesMedia} from "../media/media";
 import {
   ItunesEntityMovie,
   ItunesEntityPodcast,
@@ -12,7 +12,43 @@ import {
   ItunesEntityAll
 } from "../media/entity";
 
-export class ItunesSearchOptions {
+export function toSearchUri(options: ISearchOptions): string {
+  const searchTerm: string = "term=" + options.term;
+  const searchCountry: string = options.country
+    ? "&country=" + options.country
+    : "";
+
+  const searchMedia: string = options.media ? "&media=" + options.media : "";
+  const searchEntity: string = options.entity
+    ? "&entity=" + options.entity
+    : "";
+
+  const searchLimit: string = options.limit ? "&limit=" + options.limit : "";
+
+  // Converting passed extra parameters
+  const searchExtras = options.extras
+    ? (() => {
+        let extraParams = "";
+
+        for (let param in options.extras) {
+          extraParams += "&" + param + "=" + (options.extras as any)[param];
+        }
+
+        return extraParams;
+      })()
+    : "";
+
+  return (
+    searchTerm +
+    searchCountry +
+    searchMedia +
+    searchEntity +
+    searchLimit +
+    searchExtras
+  );
+}
+
+export interface ISearchOptions {
   // A query to search for.
   term: string;
 
@@ -45,6 +81,29 @@ export class ItunesSearchOptions {
   // JS object with any extra search parameters not found in this class.
   extras?: {};
 
+  // Converts object to URI safe parameters
+  toURI?: () => string;
+}
+
+export class ItunesSearchOptions {
+  term: string;
+  country?: string;
+  media?: ItunesMedia;
+  entity?:
+    | ItunesEntityMovie
+    | ItunesEntityPodcast
+    | ItunesEntityMusic
+    | ItunesEntityMusicVideo
+    | ItunesEntityAudioBook
+    | ItunesEntityShortFilm
+    | ItunesEntityTvShow
+    | ItunesEntitySoftware
+    | ItunesEntityEbook
+    | ItunesEntityAll;
+  limit?: number;
+  lang?: "en_us" | "ja_jp";
+  extras?: {};
+
   constructor(options: {
     term: string;
     country?: string;
@@ -74,37 +133,16 @@ export class ItunesSearchOptions {
   }
 
   // Converts object to URI safe parameters
-  toURI() {
-    const searchTerm: string = "term=" + this.term;
-    const searchCountry: string = this.country
-      ? "&country=" + this.country
-      : "";
+  toURI = (): string => toSearchUri(this);
 
-    const searchMedia: string = this.media ? "&media=" + this.media : "";
-    const searchEntity: string = this.entity ? "&entity=" + this.entity : "";
-
-    const searchLimit: string = this.limit ? "&limit=" + this.limit : "";
-
-    // Converting passed extra parameters
-    const searchExtras = this.extras
-      ? (() => {
-          let extraParams = "";
-
-          for (let param in this.extras) {
-            extraParams += "&" + param + "=" + (this.extras as any)[param];
-          }
-
-          return extraParams;
-        })()
-      : "";
-
-    return (
-      searchTerm +
-      searchCountry +
-      searchMedia +
-      searchEntity +
-      searchLimit +
-      searchExtras
-    );
-  }
+  static from = (options: ISearchOptions): ItunesSearchOptions =>
+    new ItunesSearchOptions({
+      term: options.term,
+      country: options.country,
+      media: options.media,
+      entity: options.entity,
+      limit: options.limit,
+      lang: options.lang,
+      extras: options.extras
+    });
 }
