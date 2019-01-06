@@ -2,13 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 function toSearchUri(options) {
     const searchTerm = "term=" + options.term;
-    const searchCountry = options.country
-        ? "&country=" + options.country
-        : "";
+    const searchCountry = options.country ? "&country=" + options.country : "";
     const searchMedia = options.media ? "&media=" + options.media : "";
-    const searchEntity = options.entity
-        ? "&entity=" + options.entity
-        : "";
+    const searchEntity = options.entity ? "&entity=" + options.entity : "";
     const searchLimit = options.limit ? "&limit=" + options.limit : "";
     // Converting passed extra parameters
     const searchExtras = options.extras
@@ -20,12 +16,7 @@ function toSearchUri(options) {
             return extraParams;
         })()
         : "";
-    return (searchTerm +
-        searchCountry +
-        searchMedia +
-        searchEntity +
-        searchLimit +
-        searchExtras);
+    return searchTerm + searchCountry + searchMedia + searchEntity + searchLimit + searchExtras;
 }
 exports.toSearchUri = toSearchUri;
 class ItunesSearchOptions {

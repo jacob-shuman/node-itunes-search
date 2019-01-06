@@ -18,9 +18,7 @@ function toLookupUri(options) {
         });
         return keyParam;
     })();
-    const lookupEntity = options.entity
-        ? "&entity=" + options.entity
-        : "";
+    const lookupEntity = options.entity ? "&entity=" + options.entity : "";
     const lookupLimit = options.limit ? "&limit=" + options.limit : "";
     // Converting passed extra parameters
     const lookupExtras = options.extras
