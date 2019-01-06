@@ -55,7 +55,7 @@ itunesAPI.searchItunes(searchOptions).then((result) => {
 });
 ```
 
-### Simpler Syntax
+### Simple Search
 
 ```ts
 const itunesApi = require("node-itunes-search");
@@ -88,7 +88,7 @@ lookupItunes(lookupOptions).then((result: ItunesResult) => {
 });
 ```
 
-### Simpler Syntax
+### Simple Lookup
 
 ```ts
 import ItunesSearch from "node-itunes-search";
@@ -100,6 +100,10 @@ const lookupOptions: ItunesSearch.LookupOptionsInterface = {
 
 const result: ItunesSearch.Result = await ItunesSearch.lookup(lookupOptions);
 ```
+
+## Contributing
+
+Feel free to make an issue or pull request. My schedule is pretty open so I will be more than happy to review them in a short amount of time.
 
 ## Examples
 
