@@ -13,13 +13,17 @@ The [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentati
 - [**Contributing**](#contributing)
 - [**Examples**](#examples)
 
-## Installation <a name="installation"></a>
+<a name="installation"></a>
+
+## Installation
 
 ```bash
 $ npm install node-itunes-search
 ```
 
-## Importing <a name="importing"></a>
+<a name="importing"></a>
+
+## Importing
 
 #### Commonjs
 
@@ -39,7 +43,9 @@ import {ItunesSearchOptions} from "node-itunes-search";
 import ItunesSearch from "node-itunes-search";
 ```
 
-## Usage <a name="usage"></a>
+<a name="usage"></a>
+
+## Usage
 
 The module exposes 2 functions `searchItunes` and `lookupItunes` which can be used to search and lookup content using the Itunes Search API respectively.
 
@@ -109,7 +115,9 @@ const lookupOptions: ItunesSearch.LookupOptionsInterface = {
 const result: ItunesSearch.Result = await ItunesSearch.lookup(lookupOptions);
 ```
 
-## API <a name="api"></a>
+<a name="api"></a>
+
+## API
 
 ### Global Variables
 
@@ -185,10 +193,14 @@ The total number of `results`.
 | <br>                                        |                                                        |             |
 | TypeScript import (non-existent identifier) | `import {NodeItunesSearch} from "node-itunes-search";` | **Fail**    |
 
-## Contributing <a name="contributing"></a>
+<a name="contributing"></a>
+
+## Contributing
 
 Feel free to make an issue or pull request. My schedule is pretty open and I will be more than happy to review any requests or answer any questions you may have!
 
-## Examples<a name="examples"></a>
+<a name="examples"></a>
+
+## Examples
 
 Look in the [examples directory](https://github.com/jacob-shuman/node-itunes-search/tree/master/examples) for usage examples.
