@@ -121,9 +121,63 @@ const result: ItunesSearch.Result = await ItunesSearch.lookup(lookupOptions);
 
 ### Global Variables
 
+#### **`const itunesSearchRoot: string`**
+
+The root domain used when making search queries using the `searchItunes` function.
+
+#### **`const itunesLookupRoot: string`**
+
+The root domain used when making lookup queries using the `lookupItunes` function.
+
 ### Interfaces
 
+#### `ISearchOptions`
+
+The structure for an options object required when calling the `searchItunes` function.
+
+#### Members
+
+#### **`term: string`**
+
+#### **`country?: string`**
+
+#### **`media?: ItunesMedia`**
+
+#### **`entity?: ItunesEntityMovie | ItunesEntityPodcast | ItunesEntityMusic | ItunesEntityMusicVideo | ItunesEntityAudioBook | ItunesEntityShortFilm | ItunesEntityTvShow | ItunesEntitySoftware | ItunesEntityEbook | ItunesEntityAll`**
+
+#### **`limit?: number`**
+
+#### **`lang?: "en_us" | "ja_jp"`**
+
+#### **`extras?: {}`**
+
+#### **`toURI?: () => string`**
+
+#### `ILookupOptions`
+
+The structure for an options object required when calling the `lookupItunes` function.
+
+#### **`keys: Array<string>`**
+
+keyType: ItunesLookupType;
+
+#### **`keyType: ItunesLookupType`**
+
+#### **`entity?: ItunesEntityMovie | ItunesEntityPodcast | ItunesEntityMusic | ItunesEntityMusicVideo | ItunesEntityAudioBook | ItunesEntityShortFilm | ItunesEntityTvShow | ItunesEntitySoftware | ItunesEntityEbook | ItunesEntityAll`**
+
+#### **`limit?: number`**
+
+#### **`extras?: {}`**
+
+#### **`toURI?: () => string`**
+
 ### Classes
+
+#### `ItunesSearchOptions`
+
+#### `ItunesLookupOptions`
+
+#### `ItunesProperties`
 
 #### `ItunesResult`
 
@@ -133,7 +187,7 @@ The returned metadata of a `searchItunes` or `lookupItunes` query.
 
 #### **`const results: Array<ItunesProperties>`**
 
-`ItunesProperties` objects parsed from the result of a `searchItunes` or `lookupItunes` query.
+An `Array` of `ItunesProperties` objects parsed from the result of a `searchItunes` or `lookupItunes` query.
 
 #### **`const resultCount: number`**
 
@@ -141,7 +195,41 @@ The total number of `results`.
 
 ### Enums
 
+#### `ItunesLookupType`
+
+#### `ItunesExplicitness`
+
+#### `ItunesKind`
+
+#### `ItunesWrapperType`
+
+#### `ItunesMedia`
+
+#### `ItunesEntityMovie`
+
+#### `ItunesEntityPodcast`
+
+#### `ItunesEntityMusic`
+
+#### `ItunesEntityMusicVideo`
+
+#### `ItunesEntityAudioBook`
+
+#### `ItunesEntityShortFilm`
+
+#### `ItunesEntityTvShow`
+
+#### `ItunesEntitySoftware`
+
+#### `ItunesEntityEbook`
+
+#### `ItunesEntityAll`
+
 ### Functions
+
+#### `searchItunes`
+
+#### `lookupItunes`
 
 ### Namespace
 
@@ -157,8 +245,8 @@ The total number of `results`.
 | Interface       | `ISearchOptions`         | `SearchOptionsInterface` |
 | Interface       | `ILookupOptions`         | `LookupOptionsInterface` |
 | <br>            |                          |                          |
-| Class           | `SearchOptions`          | `SearchOptions`          |
-| Class           | `LookupOptions`          | `LookupOptions`          |
+| Class           | `ItunesSearchOptions`    | `SearchOptions`          |
+| Class           | `ItunesLookupOptions`    | `LookupOptions`          |
 | Class           | `ItunesProperties`       | `Properties`             |
 | Class           | `ItunesResult`           | `Result`                 |
 | <br>            |                          |                          |
@@ -187,7 +275,7 @@ The total number of `results`.
 
 | Description                                 | Statement                                              | Result      |
 | ------------------------------------------- | ------------------------------------------------------ | ----------- |
-| TypeScript import                           | `import ItunesSearch from "node-itunes-search";` TS    | **Success** |
+| TypeScript import                           | `import ItunesSearch from "node-itunes-search";`       | **Success** |
 | Default import                              | `import ItunesSearch from "node-itunes-search";`       | **Success** |
 | Default import (custom identifier)          | `import NodeItunesSearch from "node-itunes-search";`   | **Success** |
 | <br>                                        |                                                        |             |

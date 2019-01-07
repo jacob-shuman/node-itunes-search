@@ -40,11 +40,11 @@ export declare namespace ItunesSearch {
         All: ItunesEntityAll;
     };
     const search: typeof searchItunes;
-    const SearchRoot = "https://itunes.apple.com/search";
+    const SearchRoot: string;
     type SearchOptionsInterface = ISearchOptions;
     type SearchOptions = ItunesSearchOptions;
     const lookup: typeof lookupItunes;
-    const LookupRoot = "https://itunes.apple.com/lookup";
+    const LookupRoot: string;
     type LookupOptionsInterface = ILookupOptions;
     type LookupOptions = ItunesLookupOptions;
     export import LookupType = ItunesLookupType;

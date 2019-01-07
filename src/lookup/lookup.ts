@@ -1,7 +1,7 @@
 import {ItunesResult} from "../result/result";
 import {ILookupOptions, ItunesLookupOptions, ItunesLookupType} from "./lookup-options";
 
-export const itunesLookupRoot = "https://itunes.apple.com/lookup";
+export const itunesLookupRoot: string = "https://itunes.apple.com/lookup";
 
 export function lookupItunes(options: ILookupOptions | ItunesLookupOptions): Promise<ItunesResult> {
   return new Promise((resolve, reject) => {

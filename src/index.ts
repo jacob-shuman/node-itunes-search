@@ -1,8 +1,13 @@
 import {searchItunes, itunesSearchRoot} from "./search/search";
-import {ISearchOptions, ItunesSearchOptions} from "./search/search-options";
+import {toSearchUri, ISearchOptions, ItunesSearchOptions} from "./search/search-options";
 
 import {lookupItunes, itunesLookupRoot} from "./lookup/lookup";
-import {ILookupOptions, ItunesLookupOptions, ItunesLookupType} from "./lookup/lookup-options";
+import {
+  toLookupUri,
+  ILookupOptions,
+  ItunesLookupOptions,
+  ItunesLookupType
+} from "./lookup/lookup-options";
 
 import {ItunesExplicitness} from "./result/explicitness";
 import {ItunesKind} from "./result/kind";
