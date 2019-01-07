@@ -1,17 +1,25 @@
-# node-itunes-search
+# node-itunes-search [![npm](https://img.shields.io/npm/v/node-itunes-search.svg)](https://www.npmjs.com/package/node-itunes-search) [![Build Status](https://travis-ci.org/jacob-shuman/node-itunes-search.svg?branch=master)](https://travis-ci.org/jacob-shuman/node-itunes-search)
 
 > A simple NodeJS wrapper for the ITunes Search API.
 
-[![npm](https://img.shields.io/npm/v/node-itunes-search.svg)](https://www.npmjs.com/package/node-itunes-search)
-[![Build Status](https://travis-ci.org/jacob-shuman/node-itunes-search.svg?branch=master)](https://travis-ci.org/jacob-shuman/node-itunes-search)
+## What?
 
-## Installation
+The [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) is a publicly available API hosted by Apple which streams [Metadata](https://en.wikipedia.org/wiki/Metadata). The [phin](https://www.npmjs.com/package/phin) npm package is used to make HTTP requests to the API.
+
+- [**Installation**](#installation)
+- [**Importing**](#importing)
+- [**Usage**](#usage)
+- [**API**](#api)
+- [**Contributing**](#contributing)
+- [**Examples**](#examples)
+
+## Installation <a name="installation"></a>
 
 ```bash
 $ npm install node-itunes-search
 ```
 
-## Importing
+## Importing <a name="importing"></a>
 
 #### Commonjs
 
@@ -31,7 +39,7 @@ import {ItunesSearchOptions} from "node-itunes-search";
 import ItunesSearch from "node-itunes-search";
 ```
 
-## Usage
+## Usage <a name="usage"></a>
 
 The module exposes 2 functions `searchItunes` and `lookupItunes` which can be used to search and lookup content using the Itunes Search API respectively.
 
@@ -101,10 +109,86 @@ const lookupOptions: ItunesSearch.LookupOptionsInterface = {
 const result: ItunesSearch.Result = await ItunesSearch.lookup(lookupOptions);
 ```
 
-## Contributing
+## API <a name="api"></a>
 
-Feel free to make an issue or pull request. My schedule is pretty open so I will be more than happy to review them in a short amount of time.
+### Global Variables
 
-## Examples
+### Interfaces
 
-Look in the examples directory for usage examples.
+### Classes
+
+#### `ItunesResult`
+
+The returned metadata of a `searchItunes` or `lookupItunes` query.
+
+#### Members
+
+#### **`const results: Array<ItunesProperties>`**
+
+`ItunesProperties` objects parsed from the result of a `searchItunes` or `lookupItunes` query.
+
+#### **`const resultCount: number`**
+
+The total number of `results`.
+
+### Enums
+
+### Functions
+
+### Namespace
+
+`node-itunes-search` exports a single default namespace `ItunesSearch`. This is an alternative to referencing all models the package exports.
+
+#### Aliases
+
+| Type            | Model                    | Namespace Alias          |
+| --------------- | ------------------------ | ------------------------ |
+| Global Variable | `itunesSearchRoot`       | `SearchRoot`             |
+| Global Variable | `itunesLookupRoot`       | `LookupRoot`             |
+| <br>            |                          |                          |
+| Interface       | `ISearchOptions`         | `SearchOptionsInterface` |
+| Interface       | `ILookupOptions`         | `LookupOptionsInterface` |
+| <br>            |                          |                          |
+| Class           | `SearchOptions`          | `SearchOptions`          |
+| Class           | `LookupOptions`          | `LookupOptions`          |
+| Class           | `ItunesProperties`       | `Properties`             |
+| Class           | `ItunesResult`           | `Result`                 |
+| <br>            |                          |                          |
+| Enum            | `ItunesLookupType`       | `LookupType`             |
+| Enum            | `ItunesExplicitness`     | `Explicitness`           |
+| Enum            | `ItunesKind`             | `Kind`                   |
+| Enum            | `ItunesWrapperType`      | `WrapperType`            |
+| Enum            | `ItunesMedia`            | `Media`                  |
+| Enum            | `ItunesEntityMovie`      | `Entity.Movie`           |
+| Enum            | `ItunesEntityPodcast`    | `Entity.Podcast`         |
+| Enum            | `ItunesEntityMusic`      | `Entity.Music`           |
+| Enum            | `ItunesEntityMusicVideo` | `Entity.MusicVideo`      |
+| Enum            | `ItunesEntityAudioBook`  | `Entity.AudioBook`       |
+| Enum            | `ItunesEntityShortFilm`  | `Entity.ShortFilm`       |
+| Enum            | `ItunesEntityTvShow`     | `Entity.TvShow`          |
+| Enum            | `ItunesEntitySoftware`   | `Entity.Software`        |
+| Enum            | `ItunesEntityEbook`      | `Entity.Ebook`           |
+| Enum            | `ItunesEntityAll`        | `Entity.All`             |
+| <br>            |                          |                          |
+| Function        | `searchItunes`           | `search`                 |
+| Function        | `lookupItunes`           | `lookup`                 |
+
+**Note**: Since the `ItunesSearch` namespace is the `default` export of the package, using the name `ItunesSearch` is **optional**.
+
+#### Example
+
+| Description                                 | Statement                                              | Result      |
+| ------------------------------------------- | ------------------------------------------------------ | ----------- |
+| TypeScript import                           | `import ItunesSearch from "node-itunes-search";` TS    | **Success** |
+| Default import                              | `import ItunesSearch from "node-itunes-search";`       | **Success** |
+| Default import (custom identifier)          | `import NodeItunesSearch from "node-itunes-search";`   | **Success** |
+| <br>                                        |                                                        |             |
+| TypeScript import (non-existent identifier) | `import {NodeItunesSearch} from "node-itunes-search";` | **Fail**    |
+
+## Contributing <a name="contributing"></a>
+
+Feel free to make an issue or pull request. My schedule is pretty open and I will be more than happy to review any requests or answer any questions you may have!
+
+## Examples<a name="examples"></a>
+
+Look in the [examples directory](https://github.com/jacob-shuman/node-itunes-search/tree/master/examples) for usage examples.
