@@ -27,18 +27,18 @@ export declare namespace ItunesSearch {
     export import Kind = ItunesKind;
     export import WrapperType = ItunesWrapperType;
     export import Media = ItunesMedia;
-    type Entity = {
-        Movie: ItunesEntityMovie;
-        Podcast: ItunesEntityPodcast;
-        Music: ItunesEntityMusic;
-        MusicVideo: ItunesEntityMusicVideo;
-        AudioBook: ItunesEntityAudioBook;
-        ShortFilm: ItunesEntityShortFilm;
-        TvShow: ItunesEntityTvShow;
-        Software: ItunesEntitySoftware;
-        Ebook: ItunesEntityEbook;
-        All: ItunesEntityAll;
-    };
+    namespace Entity {
+        export import Movie = ItunesEntityMovie;
+        export import Podcast = ItunesEntityPodcast;
+        export import Music = ItunesEntityMusic;
+        export import MusicVideo = ItunesEntityMusicVideo;
+        export import AudioBook = ItunesEntityAudioBook;
+        export import ShortFilm = ItunesEntityShortFilm;
+        export import TvShow = ItunesEntityTvShow;
+        export import Software = ItunesEntitySoftware;
+        export import Ebook = ItunesEntityEbook;
+        export import All = ItunesEntityAll;
+    }
     const search: typeof searchItunes;
     const SearchRoot: string;
     type SearchOptionsInterface = ISearchOptions;

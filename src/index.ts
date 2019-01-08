@@ -1,7 +1,7 @@
-import {searchItunes, itunesSearchRoot} from "./search/search";
-import {toSearchUri, ISearchOptions, ItunesSearchOptions} from "./search/search-options";
+import { searchItunes, itunesSearchRoot } from "./search/search";
+import { toSearchUri, ISearchOptions, ItunesSearchOptions } from "./search/search-options";
 
-import {lookupItunes, itunesLookupRoot} from "./lookup/lookup";
+import { lookupItunes, itunesLookupRoot } from "./lookup/lookup";
 import {
   toLookupUri,
   ILookupOptions,
@@ -9,13 +9,13 @@ import {
   ItunesLookupType
 } from "./lookup/lookup-options";
 
-import {ItunesExplicitness} from "./result/explicitness";
-import {ItunesKind} from "./result/kind";
-import {ItunesProperties} from "./result/properties";
-import {ItunesWrapperType} from "./result/wrapper-type";
-import {ItunesResult} from "./result/result";
+import { ItunesExplicitness } from "./result/explicitness";
+import { ItunesKind } from "./result/kind";
+import { ItunesProperties } from "./result/properties";
+import { ItunesWrapperType } from "./result/wrapper-type";
+import { ItunesResult } from "./result/result";
 
-import {ItunesMedia} from "./media/media";
+import { ItunesMedia } from "./media/media";
 import {
   ItunesEntityMovie,
   ItunesEntityPodcast,
@@ -29,19 +29,19 @@ import {
   ItunesEntityAll
 } from "./media/entity";
 
-export {searchItunes, itunesSearchRoot} from "./search/search";
-export {ItunesSearchOptions} from "./search/search-options";
+export { searchItunes, itunesSearchRoot } from "./search/search";
+export { ItunesSearchOptions } from "./search/search-options";
 
-export {lookupItunes, itunesLookupRoot} from "./lookup/lookup";
-export {ItunesLookupOptions, ItunesLookupType} from "./lookup/lookup-options";
+export { lookupItunes, itunesLookupRoot } from "./lookup/lookup";
+export { ItunesLookupOptions, ItunesLookupType } from "./lookup/lookup-options";
 
-export {ItunesExplicitness} from "./result/explicitness";
-export {ItunesKind} from "./result/kind";
-export {ItunesProperties} from "./result/properties";
-export {ItunesWrapperType} from "./result/wrapper-type";
-export {ItunesResult} from "./result/result";
+export { ItunesExplicitness } from "./result/explicitness";
+export { ItunesKind } from "./result/kind";
+export { ItunesProperties } from "./result/properties";
+export { ItunesWrapperType } from "./result/wrapper-type";
+export { ItunesResult } from "./result/result";
 
-export {ItunesMedia} from "./media/media";
+export { ItunesMedia } from "./media/media";
 export {
   ItunesEntityMovie,
   ItunesEntityPodcast,
@@ -64,18 +64,18 @@ export namespace ItunesSearch {
   export import WrapperType = ItunesWrapperType;
 
   export import Media = ItunesMedia;
-  export type Entity = {
-    Movie: ItunesEntityMovie;
-    Podcast: ItunesEntityPodcast;
-    Music: ItunesEntityMusic;
-    MusicVideo: ItunesEntityMusicVideo;
-    AudioBook: ItunesEntityAudioBook;
-    ShortFilm: ItunesEntityShortFilm;
-    TvShow: ItunesEntityTvShow;
-    Software: ItunesEntitySoftware;
-    Ebook: ItunesEntityEbook;
-    All: ItunesEntityAll;
-  };
+  export namespace Entity {
+    export import Movie = ItunesEntityMovie;
+    export import Podcast = ItunesEntityPodcast;
+    export import Music = ItunesEntityMusic;
+    export import MusicVideo = ItunesEntityMusicVideo;
+    export import AudioBook = ItunesEntityAudioBook;
+    export import ShortFilm = ItunesEntityShortFilm;
+    export import TvShow = ItunesEntityTvShow;
+    export import Software = ItunesEntitySoftware;
+    export import Ebook = ItunesEntityEbook;
+    export import All = ItunesEntityAll;
+  }
 
   export const search = searchItunes;
   export const SearchRoot = itunesSearchRoot;

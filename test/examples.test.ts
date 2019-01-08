@@ -16,7 +16,7 @@ describe("Search Examples", () => {
   });
 });
 
-import {lookupItunes, ItunesResult, ItunesLookupType, ItunesLookupOptions} from "../src/index";
+import { lookupItunes, ItunesResult, ItunesLookupType, ItunesLookupOptions } from "../src/index";
 
 describe("Lookup Examples", () => {
   test("Lookup Song by ID", () => {
