@@ -4,7 +4,7 @@
 
 ## What?
 
-The [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) is a publicly available API hosted by Apple which streams [Metadata](https://en.wikipedia.org/wiki/Metadata). The [phin](https://www.npmjs.com/package/phin) npm package is used to make HTTP requests to the API.
+The [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) is a publicly available API hosted by Apple which streams [Metadata](https://en.wikipedia.org/wiki/Metadata). This wrapper uses the [phin](https://www.npmjs.com/package/phin) npm package to make HTTP requests to the API.
 
 - [**Installation**](#installation)
 - [**Importing**](#importing)
