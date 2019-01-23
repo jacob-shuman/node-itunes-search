@@ -208,12 +208,12 @@ The total number of `results`.
 
 | Key           | Value           |
 | ------------- | --------------- |
-| ´ID´          | ´"id"´          |
-| ´AMGARTISTID´ | ´"amgArtistId"´ |
-| ´AMGALBUMID´  | ´"amgAlbumId"´  |
-| ´AMGVIDEOID´  | ´"amgVideoId"´  |
-| ´UPC´         | ´"upc"´         |
-| ´ISBN´        | ´"isbn"´        |
+| `ID`          | `"id"`          |
+| `AMGARTISTID` | `"amgArtistId"` |
+| `AMGALBUMID`  | `"amgAlbumId"`  |
+| `AMGVIDEOID`  | `"amgVideoId"`  |
+| `UPC`         | `"upc"`         |
+| `ISBN`        | `"isbn"`        |
 
 #### `ItunesExplicitness`
 
