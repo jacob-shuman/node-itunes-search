@@ -206,6 +206,15 @@ The total number of `results`.
 
 #### `ItunesLookupType`
 
+| Key           | Value           |
+| ------------- | --------------- |
+| ´ID´          | ´"id"´          |
+| ´AMGARTISTID´ | ´"amgArtistId"´ |
+| ´AMGALBUMID´  | ´"amgAlbumId"´  |
+| ´AMGVIDEOID´  | ´"amgVideoId"´  |
+| ´UPC´         | ´"upc"´         |
+| ´ISBN´        | ´"isbn"´        |
+
 #### `ItunesExplicitness`
 
 #### `ItunesKind`
