@@ -139,7 +139,16 @@ The structure for an options object required when calling the `searchItunes` fun
 
 #### **`term: string`**
 
+The string query for the search request. For example if your looking for a particular song, using the format "ARTIST_NAME SONG_NAME" may return more accurate results.
+
 #### **`country?: string`**
+
+A 2 character string representing an ISO 3166 code.
+
+For example, to specify "United States" use "US".
+
+Please refer to the following URL for other country codes:
+https://en.m.wikipedia.org/wiki/ISO_3166-1_alpha-2
 
 #### **`media?: ItunesMedia`**
 
