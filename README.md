@@ -182,7 +182,7 @@ The structure for an options object required when calling the `lookupItunes` fun
 
 A JSON object containing any custom query properties to be included in the search.
 
-This is useful when a property is missing from `ISearchOptions`.
+This is useful when a property is missing from `ILookupOptions`.
 
 #### **`toURI?: () => string`**
 
