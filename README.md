@@ -242,27 +242,108 @@ The total number of `results`.
 
 #### `ItunesWrapperType`
 
+| Key          | Value          |
+| ------------ | -------------- |
+| `Track`      | `"track"`      |
+| `Collection` | `"collection"` |
+| `Artist`     | `"artist"`     |
+
 #### `ItunesMedia`
+
+| Key          | Value          |
+| ------------ | -------------- |
+| `Movie`      | `"movie"`      |
+| `Podcast`    | `"podcast"`    |
+| `Music`      | `"music"`      |
+| `MusicVideo` | `"musicVideo"` |
+| `AudioBook`  | `"audiobook"`  |
+| `ShortFilm`  | `"shortFilm"`  |
+| `TvShow`     | `"tvShow"`     |
+| `Software`   | `"software"`   |
+| `Ebook`      | `"ebook"`      |
+| `All`        | `"all"`        |
 
 #### `ItunesEntityMovie`
 
+| Key           | Value           |
+| ------------- | --------------- |
+| `MovieArtist` | `"movieArtist"` |
+| `Movie`       | `"movie"`       |
+
 #### `ItunesEntityPodcast`
+
+| Key             | Value             |
+| --------------- | ----------------- |
+| `PodcastAuthor` | `"podcastAuthor"` |
+| `Podcast`       | `"podcast"`       |
 
 #### `ItunesEntityMusic`
 
+| Key           | Value           |
+| ------------- | --------------- |
+| `MusicArtist` | `"musicArtist"` |
+| `MusicTrack`  | `"musicTrack"`  |
+| `Album`       | `"album"`       |
+| `MusicVideo`  | `"musicVideo"`  |
+| `Mix`         | `"mix"`         |
+| `Song`        | `"song"`        |
+
 #### `ItunesEntityMusicVideo`
+
+| Key           | Value           |
+| ------------- | --------------- |
+| `MusicArtist` | `"musicArtist"` |
+| `MusicVideo`  | `"musicVideo"`  |
 
 #### `ItunesEntityAudioBook`
 
+| Key               | Value               |
+| ----------------- | ------------------- |
+| `AudioBookAuthor` | `"audiobookAuthor"` |
+| `AudioBook`       | `"audiobook"`       |
+
 #### `ItunesEntityShortFilm`
+
+| Key               | Value               |
+| ----------------- | ------------------- |
+| `ShortFilmArtist` | `"shortFilmArtist"` |
+| `ShortFilm`       | `"shortFilm"`       |
 
 #### `ItunesEntityTvShow`
 
+| Key         | Value         |
+| ----------- | ------------- |
+| `TvEpisode` | `"tvEpisode"` |
+| `TvSeason`  | `"tvSeason"`  |
+
 #### `ItunesEntitySoftware`
+
+| Key            | Value            |
+| -------------- | ---------------- |
+| `Software`     | `"software"`     |
+| `IPadSoftware` | `"iPadSoftware"` |
+| `MacSoftware`  | `"macSoftware"`  |
 
 #### `ItunesEntityEbook`
 
+| Key     | Value     |
+| ------- | --------- |
+| `Ebook` | `"ebook"` |
+  
+
 #### `ItunesEntityAll`
+
+| Key          | Value          |
+| ------------ | -------------- |
+| `Movie`      | `"movie"`      |
+| `Album`      | `"album"`      |
+| `AllArtist`  | `"allArtist"`  |
+| `Podcast`    | `"podcast"`    |
+| `MusicVideo` | `"musicVideo"` |
+| `Mix`        | `"mix"`        |
+| `AudioBook`  | `"audiobook"`  |
+| `TvSeason`   | `"tvSeason"`   |
+| `AllTrack`   | `"allTrack"`   |
 
 ### Functions
 
