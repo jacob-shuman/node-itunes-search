@@ -160,6 +160,10 @@ https://en.m.wikipedia.org/wiki/ISO_3166-1_alpha-2
 
 #### **`extras?: {}`**
 
+A JSON object containing any custom query properties to be included in the search.
+
+This is useful when a property is missing from `ISearchOptions`.
+
 #### **`toURI?: () => string`**
 
 #### `ILookupOptions`
@@ -168,8 +172,6 @@ The structure for an options object required when calling the `lookupItunes` fun
 
 #### **`keys: Array<string>`**
 
-keyType: ItunesLookupType;
-
 #### **`keyType: ItunesLookupType`**
 
 #### **`entity?: ItunesEntityMovie | ItunesEntityPodcast | ItunesEntityMusic | ItunesEntityMusicVideo | ItunesEntityAudioBook | ItunesEntityShortFilm | ItunesEntityTvShow | ItunesEntitySoftware | ItunesEntityEbook | ItunesEntityAll`**
@@ -177,6 +179,10 @@ keyType: ItunesLookupType;
 #### **`limit?: number`**
 
 #### **`extras?: {}`**
+
+A JSON object containing any custom query properties to be included in the search.
+
+This is useful when a property is missing from `ISearchOptions`.
 
 #### **`toURI?: () => string`**
 
