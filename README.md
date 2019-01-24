@@ -194,6 +194,51 @@ This is useful when a property is missing from `ILookupOptions`.
 
 #### `ItunesProperties`
 
+All the properties of a single result from a `searchItunes` or `lookupItunes` query.
+
+Each `ItunesProperties` also comes with a `raw` property. This is an exact copy of the result without enforcing any types. The `raw` property is especially useful when a needed result property is missing from the `ItunesProperties` class.
+
+| Type                 | Member                   |
+| -------------------- | ------------------------ |
+| `ItunesWrapperType`  | `wrapperType`            |
+| <br>                 |                          |
+| `ItunesKind`         | `kind`                   |
+| <br>                 |                          |
+| `ItunesExplicitness` | `collectionExplicitness` |
+| `ItunesExplicitness` | `trackExplicitness`      |
+| <br>                 |                          |
+| `boolean`            | `isStreamable`           |
+| <br>                 |                          |
+| `object`             | `raw`                    |
+| <br>                 |                          |
+| `number`             | `artistId`               |
+| `number`             | `collectionId`           |
+| `number`             | `trackId`                |
+| `number`             | `collectionPrice`        |
+| `number`             | `trackPrice`             |
+| `number`             | `discCount`              |
+| `number`             | `discNumber`             |
+| `number`             | `trackCount`             |
+| `number`             | `trackNumber`            |
+| `number`             | `trackTimeMillis`        |
+| <br>                 |                          |
+| `string`             | `artistName`             |
+| `string`             | `collectionName`         |
+| `string`             | `trackName`              |
+| `string`             | `collectionCensoredName` |
+| `string`             | `trackCensoredName`      |
+| `string`             | `artistViewUrl`          |
+| `string`             | `collectionViewUrl`      |
+| `string`             | `trackViewUrl`           |
+| `string`             | `previewUrl`             |
+| `string`             | `artworkUrl30`           |
+| `string`             | `artworkUrl60`           |
+| `string`             | `artworkUrl100`          |
+| `string`             | `releaseDate`            |
+| `string`             | `country`                |
+| `string`             | `currency`               |
+| `string`             | `primaryGenreName`       |
+
 #### `ItunesResult`
 
 The returned metadata of a `searchItunes` or `lookupItunes` query.
