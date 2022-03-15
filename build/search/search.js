@@ -8,12 +8,14 @@ function searchItunes(options) {
         const phin = require("phin");
         //Initializing passed options (adding methods when directly passing an object)
         const searchOptions = search_options_1.ItunesSearchOptions.from(options);
-        phin(`${exports.itunesSearchRoot}?${searchOptions.toURI()}`, (err, res) => {
+        phin({
+            url: `${exports.itunesSearchRoot}?${searchOptions.toURI()}`,
+            parse: 'json',
+        }, (err, res) => {
             if (err) {
                 reject(err);
             }
             else {
-                res.body = JSON.parse(res.body);
                 resolve(result_1.ItunesResult.from(res.body));
             }
         });
