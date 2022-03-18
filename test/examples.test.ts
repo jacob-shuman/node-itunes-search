@@ -6,7 +6,7 @@ describe("Search Examples", () => {
 
     const searchOptions = new itunesAPI.ItunesSearchOptions({
       term: "Queen Bohemian Rhapsody",
-      limit: 1
+      limit: 1,
     });
 
     return itunesAPI.searchItunes(searchOptions).then((result: any) => {
@@ -16,15 +16,20 @@ describe("Search Examples", () => {
   });
 });
 
-import { lookupItunes, ItunesResult, ItunesLookupType, ItunesLookupOptions } from "../src/index";
+import {
+  lookupItunes,
+  ItunesResult,
+  ItunesLookupType,
+  ItunesLookupOptions,
+} from "../src/index";
 
 describe("Lookup Examples", () => {
   test("Lookup Song by ID", () => {
     expect.assertions(1);
 
     const lookupOptions = new ItunesLookupOptions({
-      keys: ["560857776"],
-      keyType: ItunesLookupType.ID
+      keys: ["1440660665"],
+      keyType: ItunesLookupType.ID,
     });
 
     return lookupItunes(lookupOptions).then((result: ItunesResult) => {
@@ -46,7 +51,7 @@ describe("Search Examples (2.0.0)", () => {
 
     const searchOptions = {
       term: "Queen Bohemian Rhapsody",
-      limit: 1
+      limit: 1,
     };
 
     const result = await itunesApi.searchItunes(searchOptions);
@@ -60,11 +65,13 @@ describe("Lookup Examples (2.0.0)", () => {
     expect.assertions(1);
 
     const lookupOptions: ItunesSearch.LookupOptionsInterface = {
-      keys: ["560857776"],
-      keyType: ItunesSearch.LookupType.ID
+      keys: ["1440660665"],
+      keyType: ItunesSearch.LookupType.ID,
     };
 
-    const result: ItunesSearch.Result = await ItunesSearch.lookup(lookupOptions);
+    const result: ItunesSearch.Result = await ItunesSearch.lookup(
+      lookupOptions
+    );
 
     return expect(result.resultCount).toBeGreaterThan(0);
   });
