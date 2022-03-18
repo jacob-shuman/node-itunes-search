@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "test": "npm run build; jest",
-    "testWatch": "clear; jest --watchAll"
+    "testWatch": "clear; jest --watchAll",
+    "prepublish": "npm build && npm test"
   },
   "repository": {
     "type": "git",
