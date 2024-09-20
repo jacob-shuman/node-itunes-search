@@ -1,38 +1,38 @@
 {
   "name": "node-itunes-search",
-  "version": "1.2.3",
-  "description": "A simple NodeJS wrapper for the ITunes Search API.",
-  "main": "build/index.js",
-  "types": "build/index.js",
-  "scripts": {
-    "build": "tsc",
-    "test": "npm run build; jest",
-    "testWatch": "clear; jest --watchAll",
-    "prepublish": "npm build && npm test"
+  "version": "2.0.0",
+  "description": "A wrapper around the iTunes Search API",
+  "main": "dist/mod.js",
+  "types": "dist/mod.js",
+  "author": "Jacob Shuman",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jacob-shuman/node-itunes-search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jacob-shuman/node-itunes-search/issues"
   },
   "keywords": [
     "itunes",
     "search",
     "api"
   ],
-  "author": "Jacob Shuman",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jacob-shuman/node-itunes-search/issues"
-  },
-  "homepage": "https://github.com/jacob-shuman/node-itunes-search#readme",
-  "dependencies": {
-    "phin": "^2.9.3"
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/mod.ts --minify --format cjs,esm --dts --sourcemap",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.2",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.4",
-    "typescript": "^3.1.6"
+    "@types/node": "^18.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.1.1"
   }
 }

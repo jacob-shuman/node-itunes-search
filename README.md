@@ -1,465 +1,263 @@
-# node-itunes-search [![npm](https://img.shields.io/npm/v/node-itunes-search.svg)](https://www.npmjs.com/package/node-itunes-search) [![Build Status](https://travis-ci.org/jacob-shuman/node-itunes-search.svg?branch=master)](https://travis-ci.org/jacob-shuman/node-itunes-search)
+# `node-itunes-search`
 
-> A simple NodeJS wrapper for the ITunes Search API.
-
-## What?
-
-The [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) is a publicly available API hosted by Apple which streams [Metadata](https://en.wikipedia.org/wiki/Metadata). This wrapper uses the [phin](https://www.npmjs.com/package/phin) npm package to make HTTP requests to the API.
-
-- [**Installation**](#installation)
-- [**Importing**](#importing)
-- [**Usage**](#usage)
-- [**API**](#api)
-- [**Contributing**](#contributing)
-- [**Examples**](#examples)
-
-<a name="installation"></a>
+> A wrapper around the [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html#//apple_ref/doc/uid/TP40017632-CH3-SW1)
+>
+> _"The Search API allows you to place search fields in your website to search for content within the iTunes Store, App Store, iBooks Store and Mac App Store."_
 
 ## Installation
 
+<a href="https://www.npmjs.com/package/node-itunes-search">
+	<picture>
+		<source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/npm-node--itunes--search-cb3837?style=for-the-badge&logo=npm&labelColor=202020&logoColor=cb3837" />
+		<img alt="npm badge" src="https://img.shields.io/badge/npm-node--itunes--search-cb3837?style=for-the-badge&logo=npm&labelColor=f0f0f0&logoColor=cb3837" />
+	</picture>
+</a>
+
 ```bash
-$ npm install node-itunes-search
+npm install node-itunes-search
 ```
 
-<a name="importing"></a>
+<a href="https://jsr.io/@nullbitme/search-itunes">
+	<picture>
+		<source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/jsr-@nullbitme/search--itunes-f3e050?style=for-the-badge&logo=jsr&labelColor=202020&logoColor=f3e050" />
+		<img alt="jsr badge" src="https://img.shields.io/badge/jsr-@nullbitme/search--itunes-f3e050?style=for-the-badge&logo=jsr&labelColor=f0f0f0&logoColor=163242" />
+	</picture>
+</a>
 
-## Importing
-
-#### Commonjs
-
-```ts
-const itunesAPI = require("node-itunes-search");
+```bash
+npx jsr add @nullbitme/search-itunes
 ```
-
-#### ES6
-
-```ts
-import {ItunesSearchOptions} from "node-itunes-search";
-```
-
-#### Default Namespace
-
-```ts
-import ItunesSearch from "node-itunes-search";
-```
-
-<a name="usage"></a>
 
 ## Usage
 
-The module exposes 2 functions `searchItunes` and `lookupItunes` which can be used to search and lookup content using the Itunes Search API respectively.
+This module exposes 2 functions `searchItunes` and `lookupItunes` which can be used to search and lookup content using the Itunes Search API respectively. Both functions return a promise for a `ItunesResults` object with the following structure:
 
-Both of these functions use vanilla javascript promises which, when successful, will return an `ItunesResult`.
+```ts
+interface ItunesResults {
+  resultCount: number;
 
-**Note** Versions 1.2.0 and higher now have a simpler syntax.
+  // Results of search/lookup
+  results: (ItunesResult & { [key: string]: unknown })[];
+}
+
+interface ItunesResults {
+  wrapperType?: ItunesWrapperType;
+  kind?: ItunesKind;
+  artistId?: number;
+  collectionId?: number;
+  trackId?: number;
+  artistName?: string;
+  collectionName: string;
+  trackName?: string;
+  collectionCensoredName?: string;
+  trackCensoredName?: string;
+  collectionArtistId?: string;
+  collectionArtistViewUrl?: string;
+  artistViewUrl?: string;
+  collectionViewUrl?: string;
+  trackViewUrl?: string;
+  previewUrl?: string;
+  artworkUrl30?: string;
+  artworkUrl60?: string;
+  artworkUrl100?: string;
+  trackRentalPrice?: number;
+  trackHdRentalPrice?: number;
+  collectionPrice?: number;
+  trackPrice?: number;
+  releaseDate?: string;
+  collectionExplicitness?: ItunesExplicitness;
+  trackExplicitness?: ItunesExplicitness;
+  discCount?: number;
+  discNumber?: number;
+  trackCount?: number;
+  trackNumber?: number;
+  trackTimeMillis?: number;
+  country?: string;
+  currency?: string;
+  primaryGenreName?: string;
+  contentAdvisoryRating?: string;
+  shortDescription?: string;
+  longDescription?: string;
+  isStreamable?: boolean;
+  hasITunesExtras?: boolean;
+}
+```
+
+This is **not** an exhaustive list of all possible properties on an `ItunesResult` due to the _limited_ api documentation. `ItunesResult` contains many of the most common properties that _could_ be on a result after reading the documentation and a bit of experimentation.
 
 ### Search
 
-```ts
-const itunesAPI = require("node-itunes-search");
-
-const searchOptions = new itunesAPI.ItunesSearchOptions({
-  term: "Queen Bohemian Rhapsody", // All searches require a single string query.
-
-  limit: 1 // An optional maximum number of returned results may be specified.
-});
-
-itunesAPI.searchItunes(searchOptions).then((result) => {
-  console.log(result);
-});
-```
-
-### Simple Search
+[Search for content using the Itunes Search API. This function requires a `term` string to perform a search.](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html#//apple_ref/doc/uid/TP40017632-CH5-SW1)
 
 ```ts
-const itunesApi = require("node-itunes-search");
-
-const searchOptions = {
-  term: "Queen Bohemian Rhapsody",
-  limit: 1
-};
-
-const result = await itunesApi.searchItunes(searchOptions);
+async function searchItunes(
+  options: ItunesSearchOptions
+): Promise<ItunesResults>;
 ```
 
 ### Lookup
 
-```ts
-import {
-  lookupItunes,
-  ItunesResult,
-  ItunesLookupOptions,
-  ItunesLookupType
-} from "node-itunes-search";
+<!-- TODO: some description -->
 
-const lookupOptions = new ItunesLookupOptions({
-  keys: ["560857776"], // Specify ID(s) of desired content
-  keyType: ItunesLookupType.ID // Searching by content ID(s)
-});
-
-lookupItunes(lookupOptions).then((result: ItunesResult) => {
-  console.log(result);
-});
-```
-
-### Simple Lookup
+[_"You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results."_](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/LookupExamples.html#//apple_ref/doc/uid/TP40017632-CH7-SW1)
 
 ```ts
-import ItunesSearch from "node-itunes-search";
-
-const lookupOptions: ItunesSearch.LookupOptionsInterface = {
-  keys: ["560857776"],
-  keyType: ItunesSearch.LookupType.ID
-};
-
-const result: ItunesSearch.Result = await ItunesSearch.lookup(lookupOptions);
+async function lookupItunes(
+  options: ItunesLookupOptions
+): Promise<ItunesResults>;
 ```
-
-<a name="api"></a>
-
-## API
-
-### Global Variables
-
-#### **`const itunesSearchRoot: string`**
-
-The root domain used when making search queries using the `searchItunes` function.
-
-#### **`const itunesLookupRoot: string`**
-
-The root domain used when making lookup queries using the `lookupItunes` function.
-
-### Interfaces
-
-#### `ISearchOptions`
-
-The structure for an options object required when calling the `searchItunes` function.
-
-#### Members
-
-#### **`term: string`**
-
-The string query for the search request. For example if your looking for a particular song, using the format "ARTIST_NAME SONG_NAME" may return more accurate results.
-
-#### **`country?: string`**
-
-A 2 character string representing an ISO 3166 code.
-
-For example, to specify "United States" use "US".
-
-Please refer to the following URL for other country codes:
-https://en.m.wikipedia.org/wiki/ISO_3166-1_alpha-2
-
-#### **`media?: ItunesMedia`**
-
-#### **`entity?: ItunesEntityMovie | ItunesEntityPodcast | ItunesEntityMusic | ItunesEntityMusicVideo | ItunesEntityAudioBook | ItunesEntityShortFilm | ItunesEntityTvShow | ItunesEntitySoftware | ItunesEntityEbook | ItunesEntityAll`**
-
-#### **`limit?: number`**
-
-#### **`lang?: "en_us" | "ja_jp"`**
-
-#### **`extras?: {}`**
-
-A JSON object containing any custom query properties to be included in the search.
-
-This is useful when a property is missing from `ISearchOptions`.
-
-#### **`toURI?: () => string`**
-
-#### `ILookupOptions`
-
-The structure for an options object required when calling the `lookupItunes` function.
-
-#### **`keys: Array<string>`**
-
-#### **`keyType: ItunesLookupType`**
-
-#### **`entity?: ItunesEntityMovie | ItunesEntityPodcast | ItunesEntityMusic | ItunesEntityMusicVideo | ItunesEntityAudioBook | ItunesEntityShortFilm | ItunesEntityTvShow | ItunesEntitySoftware | ItunesEntityEbook | ItunesEntityAll`**
-
-#### **`limit?: number`**
-
-#### **`extras?: {}`**
-
-A JSON object containing any custom query properties to be included in the search.
-
-This is useful when a property is missing from `ILookupOptions`.
-
-#### **`toURI?: () => string`**
-
-### Classes
-
-#### `ItunesSearchOptions`
-
-#### `ItunesLookupOptions`
-
-#### `ItunesProperties`
-
-All the properties of a single result from a `searchItunes` or `lookupItunes` query.
-
-Each `ItunesProperties` also comes with a `raw` property. This is an exact copy of the result without enforcing any types. The `raw` property is especially useful when a needed result property is missing from the `ItunesProperties` class.
-
-| Type                 | Member                   |
-| -------------------- | ------------------------ |
-| `ItunesWrapperType`  | `wrapperType`            |
-| <br>                 |                          |
-| `ItunesKind`         | `kind`                   |
-| <br>                 |                          |
-| `ItunesExplicitness` | `collectionExplicitness` |
-| `ItunesExplicitness` | `trackExplicitness`      |
-| <br>                 |                          |
-| `boolean`            | `isStreamable`           |
-| <br>                 |                          |
-| `object`             | `raw`                    |
-| <br>                 |                          |
-| `number`             | `artistId`               |
-| `number`             | `collectionId`           |
-| `number`             | `trackId`                |
-| `number`             | `collectionPrice`        |
-| `number`             | `trackPrice`             |
-| `number`             | `discCount`              |
-| `number`             | `discNumber`             |
-| `number`             | `trackCount`             |
-| `number`             | `trackNumber`            |
-| `number`             | `trackTimeMillis`        |
-| <br>                 |                          |
-| `string`             | `artistName`             |
-| `string`             | `collectionName`         |
-| `string`             | `trackName`              |
-| `string`             | `collectionCensoredName` |
-| `string`             | `trackCensoredName`      |
-| `string`             | `artistViewUrl`          |
-| `string`             | `collectionViewUrl`      |
-| `string`             | `trackViewUrl`           |
-| `string`             | `previewUrl`             |
-| `string`             | `artworkUrl30`           |
-| `string`             | `artworkUrl60`           |
-| `string`             | `artworkUrl100`          |
-| `string`             | `releaseDate`            |
-| `string`             | `country`                |
-| `string`             | `currency`               |
-| `string`             | `primaryGenreName`       |
-
-#### `ItunesResult`
-
-The returned metadata of a `searchItunes` or `lookupItunes` query.
-
-#### Members
-
-#### **`const results: Array<ItunesProperties>`**
-
-An `Array` of `ItunesProperties` objects parsed from the result of a `searchItunes` or `lookupItunes` query.
-
-#### **`const resultCount: number`**
-
-The total number of `results`.
-
-### Enums
-
-#### `ItunesLookupType`
-
-| Key           | Value           |
-| ------------- | --------------- |
-| `ID`          | `"id"`          |
-| `AMGARTISTID` | `"amgArtistId"` |
-| `AMGALBUMID`  | `"amgAlbumId"`  |
-| `AMGVIDEOID`  | `"amgVideoId"`  |
-| `UPC`         | `"upc"`         |
-| `ISBN`        | `"isbn"`        |
-
-#### `ItunesExplicitness`
-
-| Key           | Value           |
-| ------------- | --------------- |
-| `Explicit`    | `"explicit"`    |
-| `Cleaned`     | `"cleaned"`     |
-| `NotExplicit` | `"notExplicit"` |
-
-#### `ItunesKind`
-
-| Key                  | Value                   |
-| -------------------- | ----------------------- |
-| `Book`               | `"book"`                |
-| `Album`              | `"album"`               |
-| `CoachedAudio`       | `"coached-audio"`       |
-| `FeatureMovie`       | `"feature-movie"`       |
-| `InteractiveBooklet` | `"interactive-booklet"` |
-| `MusicVideo`         | `"music-video"`         |
-| `PdfPodcast`         | `"pdf podcast"`         |
-| `PodcastEpisode`     | `"podcast-episode"`     |
-| `SoftwarePackage`    | `"software-package"`    |
-| `Song`               | `"song"`                |
-| `TvEpisode`          | `"tv-episode"`          |
-| `Artist`             | `"artist"`              |
-
-#### `ItunesWrapperType`
-
-| Key          | Value          |
-| ------------ | -------------- |
-| `Track`      | `"track"`      |
-| `Collection` | `"collection"` |
-| `Artist`     | `"artist"`     |
-
-#### `ItunesMedia`
-
-| Key          | Value          |
-| ------------ | -------------- |
-| `Movie`      | `"movie"`      |
-| `Podcast`    | `"podcast"`    |
-| `Music`      | `"music"`      |
-| `MusicVideo` | `"musicVideo"` |
-| `AudioBook`  | `"audiobook"`  |
-| `ShortFilm`  | `"shortFilm"`  |
-| `TvShow`     | `"tvShow"`     |
-| `Software`   | `"software"`   |
-| `Ebook`      | `"ebook"`      |
-| `All`        | `"all"`        |
-
-#### `ItunesEntityMovie`
-
-| Key           | Value           |
-| ------------- | --------------- |
-| `MovieArtist` | `"movieArtist"` |
-| `Movie`       | `"movie"`       |
-
-#### `ItunesEntityPodcast`
-
-| Key             | Value             |
-| --------------- | ----------------- |
-| `PodcastAuthor` | `"podcastAuthor"` |
-| `Podcast`       | `"podcast"`       |
-
-#### `ItunesEntityMusic`
-
-| Key           | Value           |
-| ------------- | --------------- |
-| `MusicArtist` | `"musicArtist"` |
-| `MusicTrack`  | `"musicTrack"`  |
-| `Album`       | `"album"`       |
-| `MusicVideo`  | `"musicVideo"`  |
-| `Mix`         | `"mix"`         |
-| `Song`        | `"song"`        |
-
-#### `ItunesEntityMusicVideo`
-
-| Key           | Value           |
-| ------------- | --------------- |
-| `MusicArtist` | `"musicArtist"` |
-| `MusicVideo`  | `"musicVideo"`  |
-
-#### `ItunesEntityAudioBook`
-
-| Key               | Value               |
-| ----------------- | ------------------- |
-| `AudioBookAuthor` | `"audiobookAuthor"` |
-| `AudioBook`       | `"audiobook"`       |
-
-#### `ItunesEntityShortFilm`
-
-| Key               | Value               |
-| ----------------- | ------------------- |
-| `ShortFilmArtist` | `"shortFilmArtist"` |
-| `ShortFilm`       | `"shortFilm"`       |
-
-#### `ItunesEntityTvShow`
-
-| Key         | Value         |
-| ----------- | ------------- |
-| `TvEpisode` | `"tvEpisode"` |
-| `TvSeason`  | `"tvSeason"`  |
-
-#### `ItunesEntitySoftware`
-
-| Key            | Value            |
-| -------------- | ---------------- |
-| `Software`     | `"software"`     |
-| `IPadSoftware` | `"iPadSoftware"` |
-| `MacSoftware`  | `"macSoftware"`  |
-
-#### `ItunesEntityEbook`
-
-| Key     | Value     |
-| ------- | --------- |
-| `Ebook` | `"ebook"` |
-  
-
-#### `ItunesEntityAll`
-
-| Key          | Value          |
-| ------------ | -------------- |
-| `Movie`      | `"movie"`      |
-| `Album`      | `"album"`      |
-| `AllArtist`  | `"allArtist"`  |
-| `Podcast`    | `"podcast"`    |
-| `MusicVideo` | `"musicVideo"` |
-| `Mix`        | `"mix"`        |
-| `AudioBook`  | `"audiobook"`  |
-| `TvSeason`   | `"tvSeason"`   |
-| `AllTrack`   | `"allTrack"`   |
-
-### Functions
-
-#### `searchItunes`
-
-#### `lookupItunes`
-
-### Namespace
-
-`node-itunes-search` exports a single default namespace `ItunesSearch`. This is an alternative to referencing all models the package exports.
-
-#### Aliases
-
-| Type            | Model                    | Namespace Alias          |
-| --------------- | ------------------------ | ------------------------ |
-| Global Variable | `itunesSearchRoot`       | `SearchRoot`             |
-| Global Variable | `itunesLookupRoot`       | `LookupRoot`             |
-| <br>            |                          |                          |
-| Interface       | `ISearchOptions`         | `SearchOptionsInterface` |
-| Interface       | `ILookupOptions`         | `LookupOptionsInterface` |
-| <br>            |                          |                          |
-| Class           | `ItunesSearchOptions`    | `SearchOptions`          |
-| Class           | `ItunesLookupOptions`    | `LookupOptions`          |
-| Class           | `ItunesProperties`       | `Properties`             |
-| Class           | `ItunesResult`           | `Result`                 |
-| <br>            |                          |                          |
-| Enum            | `ItunesLookupType`       | `LookupType`             |
-| Enum            | `ItunesExplicitness`     | `Explicitness`           |
-| Enum            | `ItunesKind`             | `Kind`                   |
-| Enum            | `ItunesWrapperType`      | `WrapperType`            |
-| Enum            | `ItunesMedia`            | `Media`                  |
-| Enum            | `ItunesEntityMovie`      | `Entity.Movie`           |
-| Enum            | `ItunesEntityPodcast`    | `Entity.Podcast`         |
-| Enum            | `ItunesEntityMusic`      | `Entity.Music`           |
-| Enum            | `ItunesEntityMusicVideo` | `Entity.MusicVideo`      |
-| Enum            | `ItunesEntityAudioBook`  | `Entity.AudioBook`       |
-| Enum            | `ItunesEntityShortFilm`  | `Entity.ShortFilm`       |
-| Enum            | `ItunesEntityTvShow`     | `Entity.TvShow`          |
-| Enum            | `ItunesEntitySoftware`   | `Entity.Software`        |
-| Enum            | `ItunesEntityEbook`      | `Entity.Ebook`           |
-| Enum            | `ItunesEntityAll`        | `Entity.All`             |
-| <br>            |                          |                          |
-| Function        | `searchItunes`           | `search`                 |
-| Function        | `lookupItunes`           | `lookup`                 |
-
-**Note**: Since the `ItunesSearch` namespace is the `default` export of the package, using the name `ItunesSearch` is **optional**.
-
-#### Example
-
-| Description                                 | Statement                                              | Result      |
-| ------------------------------------------- | ------------------------------------------------------ | ----------- |
-| TypeScript import                           | `import ItunesSearch from "node-itunes-search";`       | **Success** |
-| Default import                              | `import ItunesSearch from "node-itunes-search";`       | **Success** |
-| Default import (custom identifier)          | `import NodeItunesSearch from "node-itunes-search";`   | **Success** |
-| <br>                                        |                                                        |             |
-| TypeScript import (non-existent identifier) | `import {NodeItunesSearch} from "node-itunes-search";` | **Fail**    |
-
-<a name="contributing"></a>
-
-## Contributing
-
-Feel free to make an issue or pull request. My schedule is pretty open and I will be more than happy to review any requests or answer any questions you may have!
-
-<a name="examples"></a>
 
 ## Examples
 
-Look in the [examples directory](https://github.com/jacob-shuman/node-itunes-search/tree/master/examples) for usage examples.
+### Song Search
+
+```ts
+// npm
+import { searchItunes } from "node-itunes-search";
+// jsr
+import { searchItunes } from "@nullbitme/search-itunes";
+
+const results = await searchItunes({
+  // Search Query
+  term: "Queen Bohemian Rhapsody",
+
+  // Setting max number of results to 2
+  limit: 2,
+});
+
+console.log(results);
+```
+
+```json
+{
+  "resultCount": 2,
+  "results": [
+    {
+      "wrapperType": "track",
+      "kind": "song",
+      "artistId": 3296287,
+      "collectionId": 1434899831,
+      "trackId": 1434899925,
+      "artistName": "Queen",
+      "collectionName": "Bohemian Rhapsody (The Original Soundtrack)",
+      "trackName": "Killer Queen",
+      "collectionCensoredName": "Bohemian Rhapsody (The Original Soundtrack)",
+      "trackCensoredName": "Killer Queen (2011 Remaster)",
+      "artistViewUrl": "https://music.apple.com/us/artist/queen/3296287?uo=4",
+      "collectionViewUrl": "https://music.apple.com/us/album/killer-queen-2011-remaster/1434899831?i=1434899925&uo=4",
+      "trackViewUrl": "https://music.apple.com/us/album/killer-queen-2011-remaster/1434899831?i=1434899925&uo=4",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/e3/06/0d/e3060d43-122a-06f1-0727-046d2fd3d00c/mzaf_10838572092136278634.plus.aac.p.m4a",
+      "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/54/0b/ef540ba4-bbe7-0809-aa55-97ce32e0e13d/18UMGIM55763.rgb.jpg/30x30bb.jpg",
+      "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/54/0b/ef540ba4-bbe7-0809-aa55-97ce32e0e13d/18UMGIM55763.rgb.jpg/60x60bb.jpg",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/54/0b/ef540ba4-bbe7-0809-aa55-97ce32e0e13d/18UMGIM55763.rgb.jpg/100x100bb.jpg",
+      "collectionPrice": 11.99,
+      "trackPrice": 1.29,
+      "releaseDate": "1974-10-11T12:00:00Z",
+      "collectionExplicitness": "notExplicit",
+      "trackExplicitness": "notExplicit",
+      "discCount": 1,
+      "discNumber": 1,
+      "trackCount": 21,
+      "trackNumber": 5,
+      "trackTimeMillis": 179356,
+      "country": "USA",
+      "currency": "USD",
+      "primaryGenreName": "Rock",
+      "isStreamable": true
+    },
+    {
+      "wrapperType": "track",
+      "kind": "song",
+      "artistId": 3296287,
+      "collectionId": 1434899831,
+      "trackId": 1434899929,
+      "artistName": "Queen",
+      "collectionName": "Bohemian Rhapsody (The Original Soundtrack)",
+      "trackName": "Bohemian Rhapsody",
+      "collectionCensoredName": "Bohemian Rhapsody (The Original Soundtrack)",
+      "trackCensoredName": "Bohemian Rhapsody (2011 Remaster)",
+      "artistViewUrl": "https://music.apple.com/us/artist/queen/3296287?uo=4",
+      "collectionViewUrl": "https://music.apple.com/us/album/bohemian-rhapsody-2011-remaster/1434899831?i=1434899929&uo=4",
+      "trackViewUrl": "https://music.apple.com/us/album/bohemian-rhapsody-2011-remaster/1434899831?i=1434899929&uo=4",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/f6/46/00/f6460056-3685-6c72-f440-dde90e2f52a8/mzaf_7470643542683708752.plus.aac.p.m4a",
+      "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/54/0b/ef540ba4-bbe7-0809-aa55-97ce32e0e13d/18UMGIM55763.rgb.jpg/30x30bb.jpg",
+      "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/54/0b/ef540ba4-bbe7-0809-aa55-97ce32e0e13d/18UMGIM55763.rgb.jpg/60x60bb.jpg",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/54/0b/ef540ba4-bbe7-0809-aa55-97ce32e0e13d/18UMGIM55763.rgb.jpg/100x100bb.jpg",
+      "collectionPrice": 11.99,
+      "trackPrice": 1.29,
+      "releaseDate": "1975-10-31T12:00:00Z",
+      "collectionExplicitness": "notExplicit",
+      "trackExplicitness": "notExplicit",
+      "discCount": 1,
+      "discNumber": 1,
+      "trackCount": 21,
+      "trackNumber": 7,
+      "trackTimeMillis": 354947,
+      "country": "USA",
+      "currency": "USD",
+      "primaryGenreName": "Rock",
+      "isStreamable": true
+    }
+  ]
+}
+```
+
+### Lookup Song by ID
+
+```ts
+// npm
+import { lookupItunes } from "node-itunes-search";
+// jsr
+import { lookupItunes } from "@nullbitme/search-itunes";
+
+const results = await lookupItunes({
+  id: "1440660665", // This can optionally be an array of known string ids
+});
+
+console.log(results);
+```
+
+```json
+{
+  "resultCount": 1,
+  "results": [
+    {
+      "wrapperType": "track",
+      "kind": "song",
+      "artistId": 857919,
+      "collectionId": 1440660649,
+      "trackId": 1440660665,
+      "artistName": "Queens of the Stone Age",
+      "collectionName": "Era Vulgaris",
+      "trackName": "River In the Road",
+      "collectionCensoredName": "Era Vulgaris",
+      "trackCensoredName": "River In the Road",
+      "artistViewUrl": "https://music.apple.com/us/artist/queens-of-the-stone-age/857919?uo=4",
+      "collectionViewUrl": "https://music.apple.com/us/album/river-in-the-road/1440660649?i=1440660665&uo=4",
+      "trackViewUrl": "https://music.apple.com/us/album/river-in-the-road/1440660649?i=1440660665&uo=4",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fe/d4/ce/fed4ce08-e3b7-70a5-f532-829aa76ed8be/mzaf_620311569877156662.plus.aac.p.m4a",
+      "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/d4/60/efd46037-fa6d-7fe3-5ff6-03a48e011744/00602517401488.rgb.jpg/30x30bb.jpg",
+      "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/d4/60/efd46037-fa6d-7fe3-5ff6-03a48e011744/00602517401488.rgb.jpg/60x60bb.jpg",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ef/d4/60/efd46037-fa6d-7fe3-5ff6-03a48e011744/00602517401488.rgb.jpg/100x100bb.jpg",
+      "collectionPrice": 10.99,
+      "trackPrice": 1.29,
+      "releaseDate": "2007-01-01T12:00:00Z",
+      "collectionExplicitness": "notExplicit",
+      "trackExplicitness": "notExplicit",
+      "discCount": 1,
+      "discNumber": 1,
+      "trackCount": 12,
+      "trackNumber": 10,
+      "trackTimeMillis": 199080,
+      "country": "USA",
+      "currency": "USD",
+      "primaryGenreName": "Rock",
+      "isStreamable": true
+    }
+  ]
+}
+```
+
+## Contributing
+
+Feel free to make an issue or pull request and i'll try to review it as soon as I can.
