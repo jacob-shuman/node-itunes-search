@@ -260,4 +260,4 @@ console.log(results);
 
 ## Contributing
 
-Feel free to make an issue or pull request. My schedule is pretty open and I will be more than happy to review any requests or answer any questions you may have!
+Feel free to make an issue or pull request and i'll try to review it as soon as I can.
