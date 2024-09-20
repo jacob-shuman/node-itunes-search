@@ -4,6 +4,9 @@
   "description": "A wrapper around the iTunes Search API",
   "main": "dist/mod.js",
   "types": "dist/mod.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "tsup src/mod.ts --minify --format cjs,esm --dts --sourcemap",
     "test": "vitest"
@@ -12,6 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/jacob-shuman/node-itunes-search.git"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "keywords": [
     "itunes",
     "search",
