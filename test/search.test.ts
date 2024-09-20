@@ -1,37 +1,38 @@
+import { describe, expect, test } from "vitest";
 import {
-  searchItunes,
-  ItunesSearchOptions,
-  ItunesResult,
+  ItunesEntityMusic,
   ItunesMedia,
-  ItunesEntityMusic
-} from "../src/index";
+  ItunesSearchOptions,
+  searchItunes,
+} from "../src/mod";
+import { getSearchParams } from "../src/search";
 
 describe("Search", () => {
-  test("Successful Search", () => {
-    expect.assertions(1);
+  test("Successful Search", async () => {
+    const searchOptions: ItunesSearchOptions = {
+      term: "Queen Bohemian Rhapsody",
+    };
 
-    const searchOptions = new ItunesSearchOptions({
-      term: "Queen Bohemian Rhapsody"
-    });
+    const { resultCount } = await searchItunes(searchOptions);
 
-    return searchItunes(searchOptions).then((result: ItunesResult) => {
-      return expect(result.resultCount).toBeGreaterThan(0);
-    });
+    expect(resultCount).toBeGreaterThan(0);
   });
 });
 
 describe("Search Format", () => {
   test("Media Format", () => {
     const term = "Queens of the Stone Age Smooth Sailing";
-    const media = ItunesMedia.Music;
-    const entity = ItunesEntityMusic.MusicTrack;
+    const media: ItunesMedia = "music";
+    const entity: ItunesEntityMusic = "musicTrack";
 
-    const searchOptions = new ItunesSearchOptions({
-      term: term,
-      media: media,
-      entity: entity
-    });
+    const searchOptions: ItunesSearchOptions = {
+      term,
+      media,
+      entity,
+    };
 
-    expect(searchOptions.toURI()).toBe(`term=${term}&media=${media}&entity=${entity}`);
+    expect(getSearchParams(searchOptions)).toEqual(
+      `term=Queens+of+the+Stone+Age+Smooth+Sailing&media=music&entity=musicTrack`
+    );
   });
 });
