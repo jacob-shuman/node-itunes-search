@@ -1,0 +1,6 @@
+{
+    "$schema": "https://jsr.io/schema/config-file.v1.json",
+    "name": "@nullbitme/search-itunes",
+    "version": "2.0.0",
+    "exports": "./src/mod.ts"
+}
