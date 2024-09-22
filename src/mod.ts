@@ -18,16 +18,5 @@ export type {
   ItunesWrapperType,
 } from "./results";
 
-export type {
-  ItunesEntityAll,
-  ItunesEntityAudioBook,
-  ItunesEntityEbook,
-  ItunesEntityMovie,
-  ItunesEntityMusic,
-  ItunesEntityMusicVideo,
-  ItunesEntityPodcast,
-  ItunesEntityShortFilm,
-  ItunesEntitySoftware,
-  ItunesEntityTvShow,
-} from "./entity";
+export type { ItunesEntity } from "./entity";
 export type { ItunesMedia } from "./media";

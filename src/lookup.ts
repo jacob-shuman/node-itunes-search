@@ -1,30 +1,8 @@
-import {
-  ItunesEntityAll,
-  ItunesEntityAudioBook,
-  ItunesEntityEbook,
-  ItunesEntityMovie,
-  ItunesEntityMusic,
-  ItunesEntityMusicVideo,
-  ItunesEntityPodcast,
-  ItunesEntityShortFilm,
-  ItunesEntitySoftware,
-  ItunesEntityTvShow,
-  ItunesResults,
-} from "./mod";
+import type { ItunesEntity, ItunesResults } from "./mod";
 
 export interface ItunesLookupOptions {
   // The type of results wanted
-  entity?:
-    | ItunesEntityMovie
-    | ItunesEntityPodcast
-    | ItunesEntityMusic
-    | ItunesEntityMusicVideo
-    | ItunesEntityAudioBook
-    | ItunesEntityShortFilm
-    | ItunesEntityTvShow
-    | ItunesEntitySoftware
-    | ItunesEntityEbook
-    | ItunesEntityAll;
+  entity?: ItunesEntity;
 
   // Maximum number of results to return (default is 50, range is 1 - 200)
   limit?: number;

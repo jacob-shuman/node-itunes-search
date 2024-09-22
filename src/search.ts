@@ -1,15 +1,4 @@
-import {
-  ItunesEntityAll,
-  ItunesEntityAudioBook,
-  ItunesEntityEbook,
-  ItunesEntityMovie,
-  ItunesEntityMusic,
-  ItunesEntityMusicVideo,
-  ItunesEntityPodcast,
-  ItunesEntityShortFilm,
-  ItunesEntitySoftware,
-  ItunesEntityTvShow,
-} from "./entity";
+import { ItunesEntity } from "./entity";
 import { Iso3166CountryCode } from "./iso3166";
 import { ItunesMedia } from "./media";
 import { ItunesResults } from "./results";
@@ -25,17 +14,7 @@ export interface ItunesSearchOptions {
   media?: ItunesMedia;
 
   // The type of results wanted
-  entity?:
-    | ItunesEntityMovie
-    | ItunesEntityPodcast
-    | ItunesEntityMusic
-    | ItunesEntityMusicVideo
-    | ItunesEntityAudioBook
-    | ItunesEntityShortFilm
-    | ItunesEntityTvShow
-    | ItunesEntitySoftware
-    | ItunesEntityEbook
-    | ItunesEntityAll;
+  entity?: ItunesEntity;
 
   // TODO: add attribute and callback, entity and attribute are tied to each other
 
