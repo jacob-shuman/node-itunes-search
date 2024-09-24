@@ -47,7 +47,7 @@ interface ItunesResults {
   collectionId?: number;
   trackId?: number;
   artistName?: string;
-  collectionName: string;
+  collectionName?: string;
   trackName?: string;
   collectionCensoredName?: string;
   trackCensoredName?: string;
@@ -122,7 +122,7 @@ const results = await searchItunes({
   term: "Queen Bohemian Rhapsody",
 
   // Setting max number of results to 2
-  limit: 2,
+  limit: "2",
 });
 
 console.log(results);

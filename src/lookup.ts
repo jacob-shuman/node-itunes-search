@@ -1,7 +1,7 @@
 import type { ItunesEntities, ItunesResults } from "./mod";
 
 /**
- * Known lookup params
+ * Known lookup parameters
  */
 export type ItunesLookupOptions = {
   /**

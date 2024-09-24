@@ -5,7 +5,7 @@ import type {
 } from "./mod";
 
 /**
- * Known search params
+ * Known search parameters
  */
 export type ItunesSearchOptions = {
   /**
