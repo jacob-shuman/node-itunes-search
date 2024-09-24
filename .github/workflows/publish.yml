@@ -3,10 +3,11 @@ name: publish
 on:
   workflow_dispatch:
   push:
-    branches: 
+    branches:
       - main
     paths:
       - package.json
+      - jsr.json
 
 jobs:
   tests:
