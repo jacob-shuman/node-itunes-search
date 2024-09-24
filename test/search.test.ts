@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import {
-  ItunesEntityMusic,
   ItunesMedia,
+  ItunesMusicEntities,
   ItunesSearchOptions,
   searchItunes,
 } from "../src/mod";
@@ -23,7 +23,7 @@ describe("Search Format", () => {
   test("Media Format", () => {
     const term = "Queens of the Stone Age Smooth Sailing";
     const media: ItunesMedia = "music";
-    const entity: ItunesEntityMusic = "musicTrack";
+    const entity: ItunesMusicEntities = "musicTrack";
 
     const searchOptions: ItunesSearchOptions = {
       term,

@@ -5,7 +5,7 @@ describe("Search Examples", () => {
   test("Song Search", async () => {
     const { resultCount, results } = await searchItunes({
       term: "Queen Bohemian Rhapsody",
-      limit: 2,
+      limit: "2",
     });
 
     expect(resultCount).toEqual(2);
