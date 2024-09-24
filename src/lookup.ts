@@ -17,7 +17,7 @@ export type ItunesLookupOptions = {
   // "recent" is the only known value for this parameter
   sort?: string;
 
-  // params that override all lookup params (can also be used to override this type if it becomes outdated)
+  // params that override all lookup params including top-level keys (useful if the api changes)
   override?: Record<string, string | string[]>;
 } & Record<string, string | string[]>;
 

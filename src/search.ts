@@ -30,7 +30,7 @@ export type ItunesSearchOptions = {
   // Indicates if you want to include explicit content in the results (default is "Yes")
   explicit?: "Yes" | "No";
 
-  // params that override all search params (can also be used to override this type if it becomes outdated)
+  // params that override all search params including top-level keys (useful if the api changes)
   override?: Record<string, string | string[]>;
 } & Record<string, string | string[]>;
 
