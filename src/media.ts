@@ -1,28 +1,26 @@
 import {
   ItunesAllAttributes,
+  ItunesAllEntities,
   ItunesAttributes,
   ItunesAudiobookAttributes,
-  ItunesMovieAttributes,
-  ItunesMusicAttributes,
-  ItunesMusicVideoAttributes,
-  ItunesPodcastAttributes,
-  ItunesShortFilmAttributes,
-  ItunesSoftwareAttributes,
-  ItunesTvShowAttributes,
-} from "./attribute";
-import {
-  ItunesAllEntities,
   ItunesAudiobookEntities,
   ItunesEbookEntities,
   ItunesEntities,
+  ItunesMovieAttributes,
   ItunesMovieEntities,
+  ItunesMusicAttributes,
   ItunesMusicEntities,
+  ItunesMusicVideoAttributes,
   ItunesMusicVideoEntities,
+  ItunesPodcastAttributes,
   ItunesPodcastEntities,
+  ItunesShortFilmAttributes,
   ItunesShortFilmEntities,
+  ItunesSoftwareAttributes,
   ItunesSoftwareEntities,
+  ItunesTvShowAttributes,
   ItunesTvShowEntities,
-} from "./entity";
+} from "./mod";
 
 export type ItunesMedia =
   | "movie"

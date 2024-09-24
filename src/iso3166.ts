@@ -1,5 +1,7 @@
-// A valid ISO 3166-1 (alpha-2) country code
-// http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+/**
+ * A valid ISO 3166-1 (alpha-2) country code
+ * @see {@link http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}
+ */
 export type Iso3166CountryCode =
   | "AD"
   | "AE"

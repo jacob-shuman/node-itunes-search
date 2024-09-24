@@ -1,4 +1,4 @@
-import type { ItunesEntity, ItunesResults } from "./mod";
+import type { ItunesEntities, ItunesResults } from "./mod";
 
 /**
  * Known lookup params
@@ -7,7 +7,7 @@ export type ItunesLookupOptions = {
   /**
    * The type of results wanted
    */
-  entity?: ItunesEntity;
+  entity?: ItunesEntities;
 
   /**
    * Maximum number of results to return (default is 50, range is 1 - 200)

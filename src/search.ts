@@ -1,6 +1,8 @@
-import { Iso3166CountryCode } from "./iso3166";
-import { ItunesMediaQuery } from "./media";
-import { ItunesResults } from "./results";
+import type {
+  Iso3166CountryCode,
+  ItunesMediaQuery,
+  ItunesResults,
+} from "./mod";
 
 /**
  * Known search params
