@@ -1,11 +1,11 @@
 import type { ItunesEntity, ItunesResults } from "./mod";
 
-export interface ItunesLookupOptions {
+export type ItunesLookupOptions = {
   // The type of results wanted
   entity?: ItunesEntity;
 
   // Maximum number of results to return (default is 50, range is 1 - 200)
-  limit?: number;
+  limit?: string;
 
   id?: string | string[];
   isbn?: string | string[];
@@ -17,33 +17,28 @@ export interface ItunesLookupOptions {
   // "recent" is the only known value for this parameter
   sort?: string;
 
-  // extra search parameters to include that aren't found in this interface
-  extras?: Record<string, string>;
-}
+  // extra lookup parameters to include that aren't found in this interface (can also be used to override this type if it becomes outdated)
+  extras?: Record<string, string | string[]>;
+} & Record<string, string | string[]>;
 
 export const ITUNES_LOOKUP_API_URL: string = "https://itunes.apple.com/lookup";
 
 export function getLookupParams(options: ItunesLookupOptions): string {
   const params = new URLSearchParams();
-  const appendParam = (k: string, v: string | string[] = "") => {
-    if (v.length > 0) {
-      params.append(k, typeof v === "string" ? v : v.join(","));
+
+  const appendParams = (entries: [string, undefined | string | string[]][]) => {
+    for (let [k, v] of entries) {
+      if (v != undefined && v.length > 0) {
+        params.append(k, Array.isArray(v) ? v.join(",") : v.toString());
+      }
     }
   };
 
-  appendParam("id", options.id);
-  appendParam("isbn", options.isbn);
-  appendParam("upc", options.upc);
-  appendParam("amgArtistId", options.amgArtistId);
-  appendParam("amgAlbumId", options.amgAlbumId);
-  appendParam("amgVideoId", options.amgVideoId);
-  appendParam("entity", options.entity);
-  appendParam("sort", options.sort);
-  appendParam("limit", options.limit?.toString());
+  appendParams(Object.entries({ ...options, extras: undefined }));
 
   // Converting passed extra parameters
-  for (let [k, v] of Object.entries(options.extras ?? {})) {
-    appendParam(k, v);
+  if (options.extras) {
+    appendParams(Object.entries(options.extras));
   }
 
   return params.toString();

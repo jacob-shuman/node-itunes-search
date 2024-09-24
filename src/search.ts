@@ -3,7 +3,7 @@ import { Iso3166CountryCode } from "./iso3166";
 import { ItunesMedia } from "./media";
 import { ItunesResults } from "./results";
 
-export interface ItunesSearchOptions {
+export type ItunesSearchOptions = {
   // A query to search for
   term: string;
 
@@ -19,40 +19,39 @@ export interface ItunesSearchOptions {
   // TODO: add attribute and callback, entity and attribute are tied to each other
 
   // Maximum number of results to return (default is 50, range is 1 - 200)
-  limit?: number;
+  limit?: string;
 
   // Language to return the results in (default is "en_us")
   lang?: "en_us" | "ja_jp";
 
   // Search key result version (default is 2)
-  version?: number;
+  version?: string;
 
   // Indicates if you want to include explicit content in the results (default is "Yes")
   explicit?: "Yes" | "No";
 
-  // extra search parameters to include that aren't found in this interface
-  extras?: Record<string, string>;
-}
+  // extra search parameters to include that aren't found in this interface (can also be used to override this type if it becomes outdated)
+  extras?: Record<string, string | string[]>;
+} & Record<string, string | string[]>;
 
 export const ITUNES_SEARCH_API_URL: string = "https://itunes.apple.com/search";
 
 export function getSearchParams(options: ItunesSearchOptions): string {
   const params = new URLSearchParams();
-  const appendParam = (k: string, v: string | string[] = "") => {
-    if (v.length > 0) {
-      params.append(k, typeof v === "string" ? v : v.join(","));
+
+  const appendParams = (entries: [string, undefined | string | string[]][]) => {
+    for (let [k, v] of entries) {
+      if (v != undefined && v.length > 0) {
+        params.append(k, Array.isArray(v) ? v.join(",") : v.toString());
+      }
     }
   };
 
-  appendParam("term", options.term);
-  appendParam("country", options.country);
-  appendParam("media", options.media);
-  appendParam("entity", options.entity);
-  appendParam("limit", options.limit?.toString());
+  appendParams(Object.entries({ ...options, extras: undefined }));
 
   // Converting passed extra parameters
-  for (let [k, v] of Object.entries(options.extras ?? {})) {
-    appendParam(k, v);
+  if (options.extras) {
+    appendParams(Object.entries(options.extras));
   }
 
   return params.toString();
