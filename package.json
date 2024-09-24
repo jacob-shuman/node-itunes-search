@@ -26,7 +26,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/mod.ts --minify --format cjs,esm --dts --sourcemap",
+    "build": "tsup src/mod.ts --format cjs,esm --clean --minify --dts --sourcemap --splitting",
     "test": "vitest"
   },
   "devDependencies": {
