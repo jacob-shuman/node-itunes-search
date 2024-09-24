@@ -32,7 +32,7 @@ export interface ItunesResult {
   trackId?: number;
 
   artistName?: string;
-  collectionName: string;
+  collectionName?: string;
   trackName?: string;
   collectionCensoredName?: string;
   trackCensoredName?: string;
