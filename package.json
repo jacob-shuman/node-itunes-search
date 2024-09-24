@@ -1,6 +1,6 @@
 {
   "name": "node-itunes-search",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A wrapper around the iTunes Search API",
   "main": "dist/mod.js",
   "types": "dist/mod.js",
