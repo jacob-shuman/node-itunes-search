@@ -17,8 +17,8 @@ export type ItunesLookupOptions = {
   // "recent" is the only known value for this parameter
   sort?: string;
 
-  // extra lookup parameters to include that aren't found in this interface (can also be used to override this type if it becomes outdated)
-  extras?: Record<string, string | string[]>;
+  // params that override all lookup params (can also be used to override this type if it becomes outdated)
+  override?: Record<string, string | string[]>;
 } & Record<string, string | string[]>;
 
 export const ITUNES_LOOKUP_API_URL: string = "https://itunes.apple.com/lookup";
@@ -26,19 +26,19 @@ export const ITUNES_LOOKUP_API_URL: string = "https://itunes.apple.com/lookup";
 export function getLookupParams(options: ItunesLookupOptions): string {
   const params = new URLSearchParams();
 
-  const appendParams = (entries: [string, undefined | string | string[]][]) => {
+  const setParams = (entries: [string, undefined | string | string[]][]) => {
     for (let [k, v] of entries) {
-      if (v != undefined && v.length > 0) {
-        params.append(k, Array.isArray(v) ? v.join(",") : v.toString());
+      if (v && v.length > 0) {
+        params.set(k, Array.isArray(v) ? v.join(",") : v.toString());
       }
     }
   };
 
-  appendParams(Object.entries({ ...options, extras: undefined }));
+  setParams(Object.entries({ ...options, override: undefined }));
 
   // Converting passed extra parameters
-  if (options.extras) {
-    appendParams(Object.entries(options.extras));
+  if (options.override) {
+    setParams(Object.entries(options.override));
   }
 
   return params.toString();

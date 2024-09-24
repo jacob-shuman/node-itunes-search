@@ -30,8 +30,8 @@ export type ItunesSearchOptions = {
   // Indicates if you want to include explicit content in the results (default is "Yes")
   explicit?: "Yes" | "No";
 
-  // extra search parameters to include that aren't found in this interface (can also be used to override this type if it becomes outdated)
-  extras?: Record<string, string | string[]>;
+  // params that override all search params (can also be used to override this type if it becomes outdated)
+  override?: Record<string, string | string[]>;
 } & Record<string, string | string[]>;
 
 export const ITUNES_SEARCH_API_URL: string = "https://itunes.apple.com/search";
@@ -39,19 +39,19 @@ export const ITUNES_SEARCH_API_URL: string = "https://itunes.apple.com/search";
 export function getSearchParams(options: ItunesSearchOptions): string {
   const params = new URLSearchParams();
 
-  const appendParams = (entries: [string, undefined | string | string[]][]) => {
+  const setParams = (entries: [string, undefined | string | string[]][]) => {
     for (let [k, v] of entries) {
-      if (v != undefined && v.length > 0) {
-        params.append(k, Array.isArray(v) ? v.join(",") : v.toString());
+      if (v && v.length > 0) {
+        params.set(k, Array.isArray(v) ? v.join(",") : v.toString());
       }
     }
   };
 
-  appendParams(Object.entries({ ...options, extras: undefined }));
+  setParams(Object.entries({ ...options, override: undefined }));
 
   // Converting passed extra parameters
-  if (options.extras) {
-    appendParams(Object.entries(options.extras));
+  if (options.override) {
+    setParams(Object.entries(options.override));
   }
 
   return params.toString();
