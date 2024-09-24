@@ -20,3 +20,5 @@ export type {
 
 export type { ItunesEntity } from "./entity";
 export type { ItunesMedia } from "./media";
+
+export type { Iso3166CountryCode } from "./iso3166";
