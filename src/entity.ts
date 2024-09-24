@@ -1,26 +1,43 @@
-export type ItunesEntity =
-  | "movieArtist"
-  | "movie"
-  | "podcastAuthor"
-  | "podcast"
+export type ItunesEntities =
+  | ItunesMovieEntities
+  | ItunesPodcastEntities
+  | ItunesMusicEntities
+  | ItunesMusicVideoEntities
+  | ItunesAudiobookEntities
+  | ItunesShortFilmEntities
+  | ItunesTvShowEntities
+  | ItunesSoftwareEntities
+  | ItunesEbookEntities
+  | ItunesAllEntities;
+
+export type ItunesMovieEntities = "movieArtist" | "movie";
+
+export type ItunesPodcastEntities = "podcastAuthor" | "podcast";
+
+export type ItunesMusicEntities =
   | "musicArtist"
   | "musicTrack"
   | "album"
   | "musicVideo"
   | "mix"
-  | "song"
-  | "musicArtist"
-  | "musicVideo"
-  | "audiobookAuthor"
-  | "audiobook"
-  | "shortFilmArtist"
-  | "shortFilm"
-  | "tvEpisode"
-  | "tvSeason"
+  | "song";
+
+export type ItunesMusicVideoEntities = "musicArtist" | "musicVideo";
+
+export type ItunesAudiobookEntities = "audiobookAuthor" | "audiobook";
+
+export type ItunesShortFilmEntities = "shortFilmArtist" | "shortFilm";
+
+export type ItunesTvShowEntities = "tvEpisode" | "tvSeason";
+
+export type ItunesSoftwareEntities =
   | "software"
   | "iPadSoftware"
-  | "macSoftware"
-  | "ebook"
+  | "macSoftware";
+
+export type ItunesEbookEntities = "ebook";
+
+export type ItunesAllEntities =
   | "movie"
   | "album"
   | "allArtist"
